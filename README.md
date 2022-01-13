@@ -1,7 +1,7 @@
 # Algoritmos e Estuturas de Dados - Projeto 2
 
 
-### Ver enunciado disponivel so a partir de segunda (provavelmente)
+### Ver enunciado disponivel só a partir de segunda (provavelmente)
 
 #### Contém:
 
