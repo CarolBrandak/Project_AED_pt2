@@ -1,7 +1,7 @@
 # Algoritmos e Estuturas de Dados - Projeto 2
 
 
-### Ver enunciado disponivel só a partir de segunda (provavelmente)
+### Ver enunciado [aqui](https://moodle.up.pt/pluginfile.php/133374/mod_resource/content/5/aed2122_trabalho2.pdf) <br/>
 
 #### Contém:
 
