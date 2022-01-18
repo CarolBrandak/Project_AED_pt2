@@ -1,5 +1,5 @@
-#ifndef PROJET_AED_PT2_GRAPH_H
-#define PROJET_AED_PT2_GRAPH_H
+#ifndef PROJECT_AED_PT2_GRAPH_H
+#define PROJECT_AED_PT2_GRAPH_H
 
 class Graph {
 
@@ -7,5 +7,4 @@ class Graph {
 
 };
 
-
-#endif //PROJET_AED_PT2_GRAPH_H
+#endif //PROJECT_AED_PT2_GRAPH_H

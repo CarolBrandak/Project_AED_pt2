@@ -1,5 +1,8 @@
-//
-// Created by Carol on 18/01/2022.
-//
+#ifndef PROJECT_AED_PT2_GRAPH_CPP
+#define PROJECT_AED_PT2_GRAPH_CPP
 
 #include "Graph.h"
+
+
+
+#endif // PROJECT_AED_PT2_GRAPH_CPP
