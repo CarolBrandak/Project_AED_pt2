@@ -41,20 +41,26 @@ void Menu::mainMenu() {
 }
 
 void Menu::routeTypeMenu() {
-    int option;
     do {
-        cout << "=================STCP==================" << endl;
+        cout << "=============Tipos de Rota=============" << endl;
         cout << "=======================================" << endl;
-        cout << "1 - Encontrar rota" << endl;
-        cout << "2 - Sair" << endl;
+        cout << "1 - Passando por menos paragens" << endl;
+        cout << "2 - Percorrendo menor distância" << endl;
+        cout << "3 - Mudar de autocarro mínimas vezes" << endl;
+        cout << "4 - Percurso mais barato" << endl;
+        cout << "5 - Voltar ao menu principal" << endl;
         cout << "Escolha: ";
         cin >> option;
         cout << "=======================================" << endl;
-        if (option < 1 || option > 3) cout << "Erro, por favor tente novamente!" << endl;
+        if (option < 1 || option > 5) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
 
     } while (option < 1 || option > 3);
+
+    switch (option) {
+    }
+    getMenu();
 }
 
 #endif // PROJECT_AED_PT2_MENU_CPP
