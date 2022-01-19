@@ -3,30 +3,49 @@
 
 #include "STCP.h"
 
-STCP::STCP() {
-    this->baseGraph = Graph(2487, true);
-    createBaseGraph(); // vai ler o ficheiro e criar os nós
+STCP::STCP() : baseGraph(2487, true) {
+    createBaseGraph();
 }
 
 STCP::~STCP() {
-    // dar clear quando tivermos algo
-    babaseGraph.clear();
+    baseGraph.clear();
 }
 
 void STCP::createBaseGraph() {
 
-    ifstream file("../data/stops.csv");
+    ifstream file("data/stops.csv");
     if (file.is_open()) {
         string currentLine;
         getline(file, currentLine);
+
+        int index = 0;
         while (!file.eof()) {
 
-            string 2487;
+            string Code, Name, Zone, Latitude, Longitude;
+            double latitude, longitude;
+            Coordinate coordinate;
 
+            getline(file, Code, ',');
+            getline(file, Name, ',');
+            getline(file, Zone, ',');
+            getline(file, Latitude, ','); latitude = stod(Latitude);
+            getline(file, Longitude); longitude = stod(Longitude);
+            coordinate = {latitude, longitude};
+
+            if (index < 10) {
+                cout << "Point: " << index+1 << endl;
+                cout << "Code: " << Code << endl;
+                cout << "Name: " << Name << endl;
+                cout << "Zone: " << Zone << endl;
+                cout << "Latitude: " << coordinate.latitude << endl;
+                cout << "Longitude: " << coordinate.longitude << endl;
+                cout << endl;
+            }
+            index++;
         }
 
     } else {
-        cout << "Não existe este ficheiro!" << endl;
+        cout << "O ficheiro 'stops.csv' não existe!" << endl;
     }
     file.close();
 }

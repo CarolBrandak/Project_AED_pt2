@@ -3,7 +3,7 @@
 
 #include "Graph.h"
 
-Graph::Graph(int nodes, bool dir = false){
+Graph::Graph(int nodes, bool dir) {
 
 }
 

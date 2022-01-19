@@ -6,8 +6,8 @@
 using namespace std;
 
 struct Coordinate {
-    float latitude;
-    float longitude;
+    double latitude;
+    double longitude;
 };
 
 struct Edge {
@@ -19,6 +19,7 @@ struct Node {
     list<Edge> adj;
     int distance;
     Coordinate coordinate;
+
 };
 
 class Graph {
@@ -31,7 +32,7 @@ class Graph {
 
     public:
 
-        Graph(int nodes, bool dir = false);
+        Graph(int nodes, bool dir);
         void clear();
 
 };
