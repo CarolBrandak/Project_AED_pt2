@@ -3,49 +3,54 @@
 
 #include "STCP.h"
 
-STCP::STCP() : baseGraph(2487, true) {
-    createBaseGraph();
+STCP::STCP() : weightyGraph(numberStops, true), notWeightyGraph(numberStops, true) {
+    createStops();
 }
 
 STCP::~STCP() {
-    baseGraph.clear();
+    weightyGraph.clear();
+    notWeightyGraph.clear();
 }
 
-void STCP::createBaseGraph() {
+void STCP::addStop(const Node &node) {
+    weightyGraph.addNode(node);
+    notWeightyGraph.addNode(node);
+}
 
-    ifstream file("data/stops.csv");
+Node STCP::getStop(const string &code) {
+    return weightyGraph.getNode(stops[code]);
+}
+
+void STCP::createStops() {
+
+    ifstream file(STOPS);
     if (file.is_open()) {
+
         string currentLine;
         getline(file, currentLine);
-
-        int index = 0;
+        int index = 1;
         while (!file.eof()) {
 
             string Code, Name, Zone, Latitude, Longitude;
             double latitude, longitude;
-            Coordinate coordinate;
 
             getline(file, Code, ',');
+            if (Code.empty()) return;
             getline(file, Name, ',');
             getline(file, Zone, ',');
             getline(file, Latitude, ','); latitude = stod(Latitude);
             getline(file, Longitude); longitude = stod(Longitude);
-            coordinate = {latitude, longitude};
+            Coordinate coordinate = {latitude, longitude};
 
-            if (index < 10) {
-                cout << "Point: " << index+1 << endl;
-                cout << "Code: " << Code << endl;
-                cout << "Name: " << Name << endl;
-                cout << "Zone: " << Zone << endl;
-                cout << "Latitude: " << coordinate.latitude << endl;
-                cout << "Longitude: " << coordinate.longitude << endl;
-                cout << endl;
-            }
+            stops.insert(make_pair(Code, index));
+            Node currentStop {index, Code, Name, Zone, coordinate, true, {}};
+            addStop(currentStop);
+
             index++;
         }
 
     } else {
-        cout << "O ficheiro 'stops.csv' não existe!" << endl;
+        cout << "O ficheiro " << STOPS << " não existe!" << endl;
     }
     file.close();
 }

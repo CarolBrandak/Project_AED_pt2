@@ -1,24 +1,30 @@
 #ifndef PROJECT_AED_PT2_STCP_H
 #define PROJECT_AED_PT2_STCP_H
 
-#define STOPS "data/stops.csv"
+#define numberStops 2487
+#define STOPS "../data/stops.csv"
 
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "Graph.cpp"
+#include <map>
+#include "Graph.h"
 
 class STCP {
 
     private:
 
-        Graph baseGraph;
-        void createBaseGraph();
+        Graph weightyGraph;
+        Graph notWeightyGraph;
+        map<string, int> stops;
+        void createStops();
+        void addStop(const Node &node);
 
     public:
 
         STCP();
         ~STCP();
+        Node getStop(const string &code);
 
 };
 
