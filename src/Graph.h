@@ -33,14 +33,16 @@ class Graph {
 
         int n;
         bool hasDirection;
+        bool isWeighty;
         vector<Node> nodes;
-        void computeDistance(const Node &node1, const Node &node2);
+        void computeDistance(int node1, int node2);
 
     public:
 
-        Graph(int nodes, bool dir);
+        Graph(int nodes, bool direction, bool weighty);
         void clear();
         void addNode(const Node &node);
+        void addEdge(int origin, int destiny, const string &name);
         Node getNode(int index);
 };
 

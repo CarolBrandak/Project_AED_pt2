@@ -3,8 +3,9 @@
 
 #include "STCP.h"
 
-STCP::STCP() : weightyGraph(numberStops, true), notWeightyGraph(numberStops, true) {
+STCP::STCP() : weightyGraph(numberStops, true, true), notWeightyGraph(numberStops, true, false) {
     createStops();
+    createLines();
 }
 
 STCP::~STCP() {
@@ -51,6 +52,63 @@ void STCP::createStops() {
 
     } else {
         cout << "O ficheiro " << STOPS << " não existe!" << endl;
+    }
+    file.close();
+}
+
+void STCP::createLine(const string &code) {
+
+    for (int i = 0 ; i < 2 ; i++) {
+
+        string fileName = "../data/lines/line_" + code + "_" + to_string(i) + ".csv";
+        ifstream file(fileName);
+        if (file.is_open()) {
+
+            string numberLines, lineName = lines[code];
+            getline(file, numberLines);
+            int numLines = stoi(numberLines);
+            if (numLines) {
+
+                string currentStop, nextStop;
+                getline(file, currentStop);
+
+                for (int j = 0 ; j < numLines - 1 ; j++ ) {
+
+                    getline(file, nextStop);
+                    cout << "CurrentStop = " << currentStop << endl;
+                    cout << "NextStop = " << nextStop << endl;
+                    weightyGraph.addEdge(stops[currentStop], stops[nextStop], lineName);
+                    currentStop = nextStop;
+                }
+            }
+
+        } else {
+            cout << "O ficheiro " << fileName << " não existe!" << endl;
+        }
+        file.close();
+    }
+}
+
+void STCP::createLines() {
+
+    ifstream file(LINES);
+    if (file.is_open()) {
+
+        string currentLine;
+        getline(file, currentLine);
+
+        while (!file.eof()) {
+
+            string code, name;
+            getline(file, code, ',');
+            if (code.empty()) return;
+            getline(file, name);
+            lines.insert(make_pair(code, name));
+            createLine(code);
+        }
+
+    } else {
+        cout << "O ficheiro " << LINES << " não existe!" << endl;
     }
     file.close();
 }

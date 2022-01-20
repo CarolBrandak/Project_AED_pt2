@@ -3,6 +3,7 @@
 
 #define numberStops 2487
 #define STOPS "../data/stops.csv"
+#define LINES "../data/lines.csv"
 
 #include <iostream>
 #include <string>
@@ -17,7 +18,10 @@ class STCP {
         Graph weightyGraph;
         Graph notWeightyGraph;
         map<string, int> stops;
+        map<string, string> lines;
         void createStops();
+        void createLines();
+        void createLine(const string &code);
         void addStop(const Node &node);
 
     public:
@@ -25,7 +29,7 @@ class STCP {
         STCP();
         ~STCP();
         Node getStop(const string &code);
-
+        Node getStop(const Coordinate &coordinate);
 };
 
 #endif //PROJECT_AED_PT2_STCP_H

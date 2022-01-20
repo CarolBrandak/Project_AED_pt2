@@ -3,8 +3,9 @@
 
 #include "Graph.h"
 
-Graph::Graph(int nodes, bool dir) : nodes(nodes+1) {
-    this->hasDirection = dir;
+Graph::Graph(int nodes, bool direction, bool weighty) : nodes(nodes+1) {
+    this->hasDirection = direction;
+    this->isWeighty = weighty;
 }
 
 void Graph::clear() {
@@ -14,6 +15,11 @@ void Graph::clear() {
 
 void Graph::addNode(const Node &node) {
     this->nodes[node.index] = node;
+}
+
+void Graph::addEdge(int origin, int destiny, const string &name) {
+
+
 }
 
 Node Graph::getNode(int index) {
