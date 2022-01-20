@@ -22,6 +22,10 @@ Node STCP::getStop(const string &code) {
     return weightyGraph.getNode(stops[code]);
 }
 
+vector<Node> STCP::getWeightyNodes() {
+    return weightyGraph.getNodes();
+}
+
 void STCP::createStops() {
 
     ifstream file(STOPS);
@@ -73,11 +77,9 @@ void STCP::createLine(const string &code) {
                 getline(file, currentStop);
 
                 for (int j = 0 ; j < numLines - 1 ; j++ ) {
-
                     getline(file, nextStop);
-                    cout << "CurrentStop = " << currentStop << endl;
-                    cout << "NextStop = " << nextStop << endl;
                     weightyGraph.addEdge(stops[currentStop], stops[nextStop], lineName);
+                    notWeightyGraph.addEdge(stops[currentStop], stops[nextStop], lineName);
                     currentStop = nextStop;
                 }
             }

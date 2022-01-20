@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 struct Coordinate {
@@ -14,7 +15,8 @@ struct Coordinate {
 
 struct Edge {
     int dest;
-    int weight;
+    double weight;
+    string name;
 };
 
 struct Node {
@@ -31,11 +33,10 @@ class Graph {
 
     private:
 
-        int n;
         bool hasDirection;
         bool isWeighty;
         vector<Node> nodes;
-        void computeDistance(int node1, int node2);
+        double computeDistance(int node1, int node2);
 
     public:
 
@@ -44,6 +45,7 @@ class Graph {
         void addNode(const Node &node);
         void addEdge(int origin, int destiny, const string &name);
         Node getNode(int index);
+        vector<Node> getNodes();
 };
 
 #endif //PROJECT_AED_PT2_GRAPH_H

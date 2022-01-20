@@ -30,6 +30,7 @@ class STCP {
         ~STCP();
         Node getStop(const string &code);
         Node getStop(const Coordinate &coordinate);
+        vector<Node> getWeightyNodes();
 };
 
 #endif //PROJECT_AED_PT2_STCP_H

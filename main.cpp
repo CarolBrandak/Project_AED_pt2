@@ -14,6 +14,12 @@ int main() {
         cout << "Latitude: " << stop.coordinate.latitude << endl;
         cout << "Longitude: " << stop.coordinate.longitude << endl;
         cout << "Available: " << stop.available << endl;
+
+        for (Edge edge : stop.adjacent) {
+            cout << "Edge name: " << edge.name << endl;
+            cout << "Edge destity: " << edge.dest << endl;
+        }
+
         cout << endl;
     }
 
