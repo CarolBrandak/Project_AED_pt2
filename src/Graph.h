@@ -1,11 +1,14 @@
 #ifndef PROJECT_AED_PT2_GRAPH_H
 #define PROJECT_AED_PT2_GRAPH_H
 
+#define INF (INT_MAX/2)
+
 #include <list>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <cmath>
+#include "MinHeap.h"
 using namespace std;
 
 struct Coordinate {
@@ -27,25 +30,28 @@ struct Node {
     Coordinate coordinate;
     bool available;
     list<Edge> adjacent;
+    double distance;
+    bool visited;
+    int parent;
 };
 
 class Graph {
 
     private:
 
-        bool hasDirection;
-        bool isWeighty;
         vector<Node> nodes;
         double computeDistance(int node1, int node2);
 
     public:
 
-        Graph(int nodes, bool direction, bool weighty);
+        explicit Graph(int nodes);
         void clear();
         void addNode(const Node &node);
         void addEdge(int origin, int destiny, const string &name);
+        void dijkstra(int origin);
+        list<Node> dijkstraPath(int origin, int destination);
         Node getNode(int index);
-        vector<Node> getNodes();
+        void createFootItineraries(int distance);
 };
 
 #endif //PROJECT_AED_PT2_GRAPH_H

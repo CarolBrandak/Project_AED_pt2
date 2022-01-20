@@ -3,27 +3,25 @@
 
 #include "STCP.h"
 
-STCP::STCP() : weightyGraph(numberStops, true, true), notWeightyGraph(numberStops, true, false) {
+STCP::STCP() : graph(numberStops) {
     createStops();
     createLines();
 }
 
 STCP::~STCP() {
-    weightyGraph.clear();
-    notWeightyGraph.clear();
+    graph.clear();
 }
 
 void STCP::addStop(const Node &node) {
-    weightyGraph.addNode(node);
-    notWeightyGraph.addNode(node);
+    graph.addNode(node);
 }
 
 Node STCP::getStop(const string &code) {
-    return weightyGraph.getNode(stops[code]);
+    return graph.getNode(stops[code]);
 }
 
-vector<Node> STCP::getWeightyNodes() {
-    return weightyGraph.getNodes();
+void STCP::createFootItineraries(int distance) {
+    graph.createFootItineraries(distance);
 }
 
 void STCP::createStops() {
@@ -78,8 +76,7 @@ void STCP::createLine(const string &code) {
 
                 for (int j = 0 ; j < numLines - 1 ; j++ ) {
                     getline(file, nextStop);
-                    weightyGraph.addEdge(stops[currentStop], stops[nextStop], lineName);
-                    notWeightyGraph.addEdge(stops[currentStop], stops[nextStop], lineName);
+                    graph.addEdge(stops[currentStop], stops[nextStop], lineName);
                     currentStop = nextStop;
                 }
             }
@@ -113,6 +110,16 @@ void STCP::createLines() {
         cout << "O ficheiro " << LINES << " não existe!" << endl;
     }
     file.close();
+}
+
+void STCP::showPath(string name1, string name2) {
+    list<Node> nodes = graph.dijkstraPath(stops[name1], stops[name2]);
+    for (Node node : nodes) {
+        cout << "Code: " << node.code << ", zone: " << node.zone <<
+        " and coordinates: " << node.coordinate.latitude << " " << node.coordinate.longitude << endl;
+    }
+
+    cout << "Distancia total percorrida: " << graph.getNode(stops[name2]).distance << endl;
 }
 
 #endif // PROJECT_AED_PT2_STCP_CPP

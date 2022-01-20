@@ -3,18 +3,12 @@
 
 #include "Graph.h"
 
-Graph::Graph(int nodes, bool direction, bool weighty) : nodes(nodes+1) {
-    this->hasDirection = direction;
-    this->isWeighty = weighty;
+Graph::Graph(int nodes) : nodes(nodes+1) {
 }
 
 void Graph::clear() {
     for (Node node : nodes) node.adjacent.clear();
     nodes.clear();
-}
-
-vector<Node> Graph::getNodes() {
-    return nodes;
 }
 
 double Graph::computeDistance(int node1, int node2) {
@@ -38,18 +32,65 @@ void Graph::addNode(const Node &node) {
 }
 
 void Graph::addEdge(int origin, int destiny, const string &name) {
-
     if (origin < 1 || destiny > nodes.size() || origin > nodes.size() || destiny < 1) return;
-    double weight = isWeighty ? computeDistance(origin, destiny) : 1;
-    //cout << "Origem: " << nodes[origin].coordinate.latitude << " " << nodes[origin].coordinate.longitude << endl;
-    //cout << "Destino: " << nodes[destiny].coordinate.latitude << " " << nodes[destiny].coordinate.longitude << endl;
-    //cout << "Distancia: " << weight << endl;
-    nodes[origin].adjacent.push_back({destiny, weight, name});
-    if (!hasDirection) nodes[destiny].adjacent.push_back({origin, weight, name});
+    nodes[origin].adjacent.push_back({destiny, computeDistance(origin, destiny), name});
 }
 
 Node Graph::getNode(int index) {
     return this->nodes[index];
+}
+
+void Graph::dijkstra(int origin) {
+
+    MinHeap<int, double> counter = MinHeap<int, double>(nodes.size(), -1);
+    for (int i = 1 ; i <= nodes.size() - 1 ; i++) {
+        nodes[i].distance = INF;
+        nodes[i].visited = false;
+        nodes[i].parent = INF;
+        counter.insert(i, INF);
+    }
+
+    nodes[origin].distance = 0;
+    counter.decreaseKey(origin, 0);
+
+    while (counter.getSize()) {
+
+        int u = counter.removeMin();
+        nodes[u].visited = true;
+        for (const Edge &edge : nodes[u].adjacent) {
+            int v = edge.dest;
+            double w = edge.weight;
+            if (!nodes[v].visited && nodes[u].distance + w < nodes[v].distance) {
+                nodes[v].distance = nodes[u].distance + w;
+                counter.decreaseKey(v, nodes[v].distance);
+                nodes[v].parent = u;
+            }
+        }
+    }
+}
+
+list<Node> Graph::dijkstraPath(int origin, int destination) {
+
+    dijkstra(origin);
+    list<Node> path = {};
+    if (nodes[destination].distance == INF) return path;
+
+    int i = destination;
+    path.push_back(nodes[i]);
+    while (i != origin) {
+        i = nodes[i].parent;
+        path.push_front(nodes[i]);
+    }
+    return path;
+}
+
+void Graph::createFootItineraries(int distance) {
+
+    for (int i = 1 ; i < nodes.size() ; i++ ) {
+        for (int j = 1 ; j < nodes.size() ; j++ ) {
+            if (i != j && distance >= computeDistance(i, j)) addEdge(i, j, "Foot");
+        }
+    }
 }
 
 #endif // PROJECT_AED_PT2_GRAPH_CPP

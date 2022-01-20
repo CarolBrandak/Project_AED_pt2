@@ -15,8 +15,7 @@ class STCP {
 
     private:
 
-        Graph weightyGraph;
-        Graph notWeightyGraph;
+        Graph graph;
         map<string, int> stops;
         map<string, string> lines;
         void createStops();
@@ -29,8 +28,8 @@ class STCP {
         STCP();
         ~STCP();
         Node getStop(const string &code);
-        Node getStop(const Coordinate &coordinate);
-        vector<Node> getWeightyNodes();
+        void createFootItineraries(int distance);
+        void showPath(string name1, string name2);
 };
 
 #endif //PROJECT_AED_PT2_STCP_H
