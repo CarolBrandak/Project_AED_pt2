@@ -107,7 +107,5 @@ void Menu::coordTypeMenu() {
             break;
     }
     getMenu();
-
-
 }
 #endif // PROJECT_AED_PT2_MENU_CPP
