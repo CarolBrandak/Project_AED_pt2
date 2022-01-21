@@ -46,7 +46,7 @@ class Graph {
     private:
 
         vector<Node> nodes;
-        double computeDistance(int node1, int node2);
+        double computeDistance(double lat1, double lon1, double lat2, double lon2);
 
     public:
 

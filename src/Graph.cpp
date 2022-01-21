@@ -11,10 +11,7 @@ void Graph::clear() {
     nodes.clear();
 }
 
-double Graph::computeDistance(double lat1, double lon1, int node2) {
-
-    double lat1 = nodes[node1].coordinate.latitude , lon1 = nodes[node1].coordinate.longitude,
-            lat2 = nodes[node2].coordinate.latitude, lon2 = nodes[node2].coordinate.longitude;
+double Graph::computeDistance(double lat1, double lon1, double lat2, double lon2) {
 
     double dLat = (lat2 - lat1) * M_PI / 180.0;
     double dLon = (lon2 - lon1) * M_PI / 180.0;
@@ -33,7 +30,10 @@ void Graph::addNode(const Node &node) {
 
 void Graph::addEdge(int origin, int destiny, const string &name) {
     if (origin < 1 || destiny > nodes.size() || origin > nodes.size() || destiny < 1) return;
-    nodes[origin].adjacent.push_back({destiny, computeDistance(origin, destiny), name});
+    nodes[origin].adjacent.push_back({destiny, computeDistance(nodes[origin].coordinate.latitude,
+                                                               nodes[origin].coordinate.longitude,
+                                                               nodes[destiny].coordinate.latitude,
+                                                               nodes[destiny].coordinate.longitude), {}});
 }
 
 Node Graph::getNode(int index) {
@@ -59,7 +59,7 @@ void Graph::dijkstra(int origin) {
         nodes[u].visited = true;
         for (const Edge &edge : nodes[u].adjacent) {
             int v = edge.dest;
-            double w = edge.weight;
+            double w = edge.weight.meters;
             if (!nodes[v].visited && nodes[u].distance + w < nodes[v].distance) {
                 nodes[v].distance = nodes[u].distance + w;
                 counter.decreaseKey(v, nodes[v].distance);
@@ -88,7 +88,8 @@ void Graph::createFootItineraries(int distance) {
 
     for (int i = 1 ; i < nodes.size() ; i++ ) {
         for (int j = 1 ; j < nodes.size() ; j++ ) {
-            if (i != j && distance >= computeDistance(i, j)) addEdge(i, j, "Foot");
+            if (i != j && distance >= computeDistance(nodes[i].coordinate.latitude, nodes[i].coordinate.longitude,
+                                                      nodes[j].coordinate.latitude, nodes[j].coordinate.longitude)) addEdge(i, j, "Foot");
         }
     }
 }
@@ -97,8 +98,13 @@ Node Graph::getNode(const Coordinate &coordinate) {
 
     Node result;
     double distance = INT_MAX;
-    for (Node node : nodes) {
-        if ()
+    for (int i = 1 ; i < nodes.size() ; i++) {
+        double attempDistance = computeDistance(nodes[i].coordinate.latitude, nodes[i].coordinate.longitude,
+                                                coordinate.latitude, coordinate.longitude);
+        if (distance < attempDistance) {
+            result = nodes[i];
+            distance = attempDistance;
+        }
     }
     return result;
 }
