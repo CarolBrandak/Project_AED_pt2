@@ -24,7 +24,7 @@ struct CustomWeight {
 
 struct Edge {
     int dest;
-    CustomWeight weight;
+    double weight;
     string name;
 };
 
@@ -36,7 +36,7 @@ struct Node {
     Coordinate coordinate;
     bool available;
     list<Edge> adjacent;
-    double distance;
+    CustomWeight customWeight;
     bool visited;
     int parent;
 };
@@ -54,7 +54,7 @@ class Graph {
         void clear();
         void addNode(const Node &node);
         void addEdge(int origin, int destiny, const string &name);
-        void dijkstra(int origin);
+        void dijkstraMeters(int origin);
         list<Node> dijkstraPath(int origin, int destination);
         Node getNode(int index);
         void createFootItineraries(int distance);
