@@ -16,9 +16,15 @@ struct Coordinate {
     double longitude;
 };
 
+struct CustomWeight {
+    double meters;
+    int numberOfStops;
+    int numberOfZones;
+};
+
 struct Edge {
     int dest;
-    double weight;
+    CustomWeight weight;
     string name;
 };
 
