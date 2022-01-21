@@ -37,23 +37,13 @@ void Menu::mainMenu() {
 
     switch (option) {
         case 1:
-            coordTypeMenu();
+            routeTypeMenu();
             break;
         case 2:
             menuState.pop();
             break;
     }
     getMenu();
-}
-
-void Menu::coordTypeMenu() {
-    cout << "==========Encontrar rota=============" << endl;
-    cout << "1 - Menu Coordenadas" << endl;
-    cout << "2 - Menu Paragens" << endl;
-    cout << "3 - Menu Zonas" << endl;
-    cout << "4 - Ir para o menu anterior" << endl;
-    cout << "Escolha: ";
-    cin >> option;
 }
 
 void Menu::routeTypeMenu() {
@@ -64,7 +54,7 @@ void Menu::routeTypeMenu() {
         cout << "2 - Percorrendo menor distância" << endl;
         cout << "3 - Mudar de autocarro mínimas vezes" << endl;
         cout << "4 - Percurso mais barato" << endl;
-        cout << "5 - Voltar ao menu principal" << endl;
+        cout << "5 - Voltar ao menu anterior" << endl;
         cout << "Escolha: ";
         cin >> option;
         cout << "=======================================" << endl;
@@ -72,11 +62,52 @@ void Menu::routeTypeMenu() {
         cin.clear();
         cin.ignore(1000, '\n');
 
-    } while (option < 1 || option > 3);
+    } while (option < 1 || option > 5);
 
     switch (option) {
+        case 1:
+            coordTypeMenu();
+            break;
+        case 2:
+            coordTypeMenu();
+            break;
+        case 3:
+            coordTypeMenu();
+            break;
+        case 4:
+            coordTypeMenu();
+
+            break;
+        case 5:
+            menuState.pop()
     }
     getMenu();
 }
+void Menu::coordTypeMenu() {
+    do{
+        cout << "==========Encontrar rota=============" << endl;
+        cout << "1 - Por Coordenadas?" << endl;
+        cout << "2 - Por Paragens?" << endl;
+        cout << "3 - Voltar ao menu principal" << endl;
+        cout << "Escolha: ";
+        cin >> option;
+        cout << "=======================================" << endl;
+        if (option < 1 || option > 3) cout << "Erro, por favor tente novamente!" << endl;
+        cin.clear();
+        cin.ignore(1000, '\n');
+    } while (option < 1 || option > 3);
 
+    switch (option) {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            menuState.pop();
+            break;
+    }
+    getMenu();
+
+
+}
 #endif // PROJECT_AED_PT2_MENU_CPP
