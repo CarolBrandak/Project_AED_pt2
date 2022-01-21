@@ -11,7 +11,7 @@ void Graph::clear() {
     nodes.clear();
 }
 
-double Graph::computeDistance(int node1, int node2) {
+double Graph::computeDistance(double lat1, double lon1, int node2) {
 
     double lat1 = nodes[node1].coordinate.latitude , lon1 = nodes[node1].coordinate.longitude,
             lat2 = nodes[node2].coordinate.latitude, lon2 = nodes[node2].coordinate.longitude;
@@ -91,6 +91,16 @@ void Graph::createFootItineraries(int distance) {
             if (i != j && distance >= computeDistance(i, j)) addEdge(i, j, "Foot");
         }
     }
+}
+
+Node Graph::getNode(const Coordinate &coordinate) {
+
+    Node result;
+    double distance = INT_MAX;
+    for (Node node : nodes) {
+        if ()
+    }
+    return result;
 }
 
 #endif // PROJECT_AED_PT2_GRAPH_CPP

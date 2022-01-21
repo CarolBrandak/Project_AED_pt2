@@ -51,6 +51,7 @@ class Graph {
         void dijkstra(int origin);
         list<Node> dijkstraPath(int origin, int destination);
         Node getNode(int index);
+        Node getNode(const Coordinate &coordinate);
         void createFootItineraries(int distance);
 };
 
