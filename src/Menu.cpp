@@ -36,8 +36,24 @@ void Menu::mainMenu() {
     } while (option < 1 || option > 3);
 
     switch (option) {
+        case 1:
+            coordTypeMenu();
+            break;
+        case 2:
+            menuState.pop();
+            break;
     }
     getMenu();
+}
+
+void Menu::coordTypeMenu() {
+    cout << "==========Encontrar rota=============" << endl;
+    cout << "1 - Menu Coordenadas" << endl;
+    cout << "2 - Menu Paragens" << endl;
+    cout << "3 - Menu Zonas" << endl;
+    cout << "4 - Ir para o menu anterior" << endl;
+    cout << "Escolha: ";
+    cin >> option;
 }
 
 void Menu::routeTypeMenu() {

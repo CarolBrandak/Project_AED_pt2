@@ -47,6 +47,8 @@ public:
      * of route he would like to check
      */
      void routeTypeMenu();
+
+    void coordTypeMenu();
 };
 
 #endif // PROJECT_AED_PT2_MENU_H
