@@ -40,17 +40,17 @@ Node Graph::getNode(int index) {
     return this->nodes[index];
 }
 
-void Graph::dijkstra(int origin) {
+void Graph::dijkstraMeters(int origin) {
 
     MinHeap<int, double> counter = MinHeap<int, double>(nodes.size(), -1);
     for (int i = 1 ; i <= nodes.size() - 1 ; i++) {
-        nodes[i].distance = INF;
+        nodes[i].customWeight.meters = INF;
         nodes[i].visited = false;
         nodes[i].parent = INF;
         counter.insert(i, INF);
     }
 
-    nodes[origin].distance = 0;
+    nodes[origin].customWeight.meters = 0;
     counter.decreaseKey(origin, 0);
 
     while (counter.getSize()) {
@@ -59,10 +59,10 @@ void Graph::dijkstra(int origin) {
         nodes[u].visited = true;
         for (const Edge &edge : nodes[u].adjacent) {
             int v = edge.dest;
-            double w = edge.weight.meters;
-            if (!nodes[v].visited && nodes[u].distance + w < nodes[v].distance) {
-                nodes[v].distance = nodes[u].distance + w;
-                counter.decreaseKey(v, nodes[v].distance);
+            double w = edge.weight;
+            if (!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
+                nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
+                counter.decreaseKey(v, nodes[v].customWeight.meters);
                 nodes[v].parent = u;
             }
         }
@@ -71,9 +71,9 @@ void Graph::dijkstra(int origin) {
 
 list<Node> Graph::dijkstraPath(int origin, int destination) {
 
-    dijkstra(origin);
+    dijkstraMeters(origin);
     list<Node> path = {};
-    if (nodes[destination].distance == INF) return path;
+    if (nodes[destination].customWeight.meters == INF) return path;
 
     int i = destination;
     path.push_back(nodes[i]);

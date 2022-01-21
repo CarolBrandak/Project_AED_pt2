@@ -79,7 +79,7 @@ void Menu::routeTypeMenu() {
 
             break;
         case 5:
-            menuState.pop()
+            menuState.pop();
     }
     getMenu();
 }
