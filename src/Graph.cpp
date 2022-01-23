@@ -24,16 +24,16 @@ double Graph::computeDistance(double lat1, double lon1, double lat2, double lon2
     return rad * c * 1000;
 }
 
-void Graph::addNode(const Node &node) {
-    this->nodes[node.index] = node;
+void Graph::addNode(const Node &node, int index) {
+    this->nodes[index] = node;
 }
 
 void Graph::addEdge(int origin, int destiny, const string &name) {
     if (origin < 1 || destiny > nodes.size() || origin > nodes.size() || destiny < 1) return;
     nodes[origin].adjacent.push_back({destiny, computeDistance(nodes[origin].coordinate.latitude,
-                                                               nodes[origin].coordinate.longitude,
-                                                               nodes[destiny].coordinate.latitude,
-                                                               nodes[destiny].coordinate.longitude), {}});
+                                                                   nodes[origin].coordinate.longitude,
+                                                                   nodes[destiny].coordinate.latitude,
+                                                                   nodes[destiny].coordinate.longitude), name});
 }
 
 Node Graph::getNode(int index) {

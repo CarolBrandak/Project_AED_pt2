@@ -29,7 +29,7 @@ void Menu::mainMenu() {
         cout << "Escolha: ";
         cin >> option;
         cout << "=======================================" << endl;
-        if (option < 1 || option > 3) cout << "Erro, por favor tente novamente!" << endl;
+        if (option < 1 || option > 2) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
 

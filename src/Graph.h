@@ -18,7 +18,7 @@ struct Coordinate {
 
 struct CustomWeight {
     double meters;
-    int numberOfStops;
+    int numberOfLines;
     int numberOfZones;
 };
 
@@ -29,7 +29,6 @@ struct Edge {
 };
 
 struct Node {
-    int index;
     string code;
     string name;
     string zone;
@@ -52,9 +51,11 @@ class Graph {
 
         explicit Graph(int nodes);
         void clear();
-        void addNode(const Node &node);
+        void addNode(const Node &node, int index);
         void addEdge(int origin, int destiny, const string &name);
         void dijkstraMeters(int origin);
+(       void dijkstraZones(int origin);
+        void dijkstraLines(int origin);
         list<Node> dijkstraPath(int origin, int destination);
         Node getNode(int index);
         Node getNode(const Coordinate &coordinate);
