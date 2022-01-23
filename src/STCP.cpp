@@ -12,8 +12,8 @@ STCP::~STCP() {
     graph.clear();
 }
 
-void STCP::addStop(const Node &node) {
-    graph.addNode(node);
+void STCP::addStop(const Node &node, int index) {
+    graph.addNode(node, index);
 }
 
 Node STCP::getStop(const string &code) {
@@ -46,8 +46,8 @@ void STCP::createStops() {
             Coordinate coordinate = {latitude, longitude};
 
             stops.insert(make_pair(Code, index));
-            Node currentStop {index, Code, Name, Zone, coordinate, true, {}};
-            addStop(currentStop);
+            Node currentStop {Code, Name, Zone, coordinate, true, {}};
+            addStop(currentStop, index);
 
             index++;
         }
@@ -112,9 +112,11 @@ void STCP::createLines() {
     file.close();
 }
 
-void STCP::showPath(string name1, string name2) {
-    list<Node> nodes = graph.dijkstraPath(stops[name1], stops[name2]);
-    for (Node node : nodes) {
+void STCP::showPath(string name1, string name2, int type) {
+
+    list<Node> nodes = graph.dijkstraPath(stops[name1], stops[name2], type);
+
+    for (const Node &node : nodes) {
         cout << "Code: " << node.code << ", zone: " << node.zone <<
         " and coordinates: " << node.coordinate.latitude << " " << node.coordinate.longitude << endl;
     }
