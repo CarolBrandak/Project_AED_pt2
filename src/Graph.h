@@ -54,7 +54,7 @@ class Graph {
         void addNode(const Node &node, int index);
         void addEdge(int origin, int destiny, const string &name);
         void dijkstraMeters(int origin);
-(       void dijkstraZones(int origin);
+        void dijkstraZones(int origin);
         void dijkstraLines(int origin);
         list<Node> dijkstraPath(int origin, int destination);
         Node getNode(int index);

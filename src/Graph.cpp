@@ -69,6 +69,32 @@ void Graph::dijkstraMeters(int origin) {
     }
 }
 
+void Graph::dijkstraZones(int origin) {
+    MinHeap<int,string> counter = MinHeap<int,string>(nodes.size(),"");
+    for(int i = 1; i <= nodes.size(); i++) {
+        nodes[i].customWeight.numberOfZones = INF;
+        nodes[i].visited = false;
+        nodes[i].parent = INF;
+        counter.insert(i,"");
+    }
+
+    nodes[origin].customWeight.numberOfZones = 0;
+    counter.decreaseKey(origin,"");
+
+    while(counter.getSize()) {
+        int u = counter.removeMin();
+        nodes[u].visited = true;
+        for(const Edge &edge : nodes[u].adjacent) {
+            int destinyNode = edge.dest;
+            string destinyNodeZone = nodes[destinyNode].zone;
+            if(!nodes[destinyNode].visited && nodes[u].zone != nodes[destinyNode].zone) {
+                nodes[destinyNode].customWeight.numberOfZones++;
+                counter.decreaseKey(destinyNode,"nodes[destinyNode]");
+            }
+        }
+    }
+}
+
 list<Node> Graph::dijkstraPath(int origin, int destination) {
 
     dijkstraMeters(origin);
