@@ -43,8 +43,11 @@ Node Graph::getNode(int index) {
 void Graph::dijkstraMeters(int origin) {
 
     MinHeap<int, double> counter = MinHeap<int, double>(nodes.size(), -1);
+
     for (int i = 1 ; i <= nodes.size() - 1 ; i++) {
         nodes[i].customWeight.meters = INF;
+        nodes[i].customWeight.numberOfLines = 0;
+        nodes[i].customWeight.numberOfZones = 0;
         nodes[i].visited = false;
         nodes[i].parent = INF;
         counter.insert(i, INF);
@@ -95,9 +98,14 @@ void Graph::dijkstraZones(int origin) {
     }
 }
 
-list<Node> Graph::dijkstraPath(int origin, int destination) {
+list<Node> Graph::dijkstraPath(int origin, int destination, int type) {
 
-    dijkstraMeters(origin);
+    switch (type) {
+        case 1: dijkstraMeters(origin); break;
+        case 2: dijkstraLines(origin); break;
+        case 3: dijkstraZones(origin); break;
+    }
+
     list<Node> path = {};
     if (nodes[destination].customWeight.meters == INF) return path;
 

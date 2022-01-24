@@ -31,10 +31,10 @@ int main() {
      * e uma pessoa que pode andar, no máximo, 200 metros entre uma paragem e outra.
      */
     cout << "Sem andar nada (só troca de linha se houver um stop com mais do que uma): " << endl;
-    Stcp.showPath("1AL5", "CCC2"); // Aliados a St. Ovídeo
+    Stcp.showPath("1AL5", "CCC2", 1); // Aliados a St. Ovídeo
     cout << endl << "Pode andar, no máximo, 200 metros de uma paragem para outra (para mudar de linha, por exemplo): " << endl;
     Stcp.createFootItineraries(200);
-    Stcp.showPath("1AL5", "CCC2"); // Aliados a St. Ovídeo
+    Stcp.showPath("1AL5", "CCC2", 1); // Aliados a St. Ovídeo
 
     return 0;
 }

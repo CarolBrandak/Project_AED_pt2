@@ -21,7 +21,7 @@ class STCP {
         void createStops();
         void createLines();
         void createLine(const string &code);
-        void addStop(const Node &node);
+        void addStop(const Node &node, int index);
 
     public:
 
@@ -29,7 +29,7 @@ class STCP {
         ~STCP();
         Node getStop(const string &code);
         void createFootItineraries(int distance);
-        void showPath(string name1, string name2);
+        void showPath(string name1, string name2, int type);
 };
 
 #endif //PROJECT_AED_PT2_STCP_H
