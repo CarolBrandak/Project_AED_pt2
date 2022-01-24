@@ -56,6 +56,7 @@ class Graph {
         Node getNode(const Coordinate &coordinate);
         void addEdge(int origin, int destiny, const string &name);
         void createFootItineraries(int distance);
+        void deleteFootItineraries();
         void dijkstraMeters(int origin);
         void dijkstraLines(int origin);
         void dijkstraZones(int origin);

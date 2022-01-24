@@ -182,7 +182,15 @@ list<Node> Graph::dijkstraPath(int origin, int destination, int type) {
     return path;
 }
 
+void Graph::deleteFootItineraries() {
+    for (int i = 1; i < nodes.size(); i++) {
+        nodes[i].adjacent.remove_if([](const Edge &edge) { return edge.name == "Foot"; });
+    }
+}
+
 void Graph::createFootItineraries(int distance) {
+
+    deleteFootItineraries();
 
     for (int i = 1 ; i < nodes.size() ; i++ ) {
         for (int j = 1 ; j < nodes.size() ; j++ ) {
