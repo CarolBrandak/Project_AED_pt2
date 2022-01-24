@@ -76,7 +76,7 @@ void Graph::dijkstraLines(int origin) {
 
     MinHeap<int, int> counter = MinHeap<int, int>(nodes.size(), -1);
 
-    for (int i = 1 ; i <= nodes.size() - 1 ; i++) {
+    for (int i = 1; i <= nodes.size() - 1; i++) {
         nodes[i].customWeight.meters = INF;
         nodes[i].customWeight.numberOfLines = INF;
         nodes[i].customWeight.numberOfZones = INF;
@@ -105,8 +105,8 @@ void Graph::dijkstraLines(int origin) {
             int v = edge.dest;
             double w = edge.weight;
             string lineName = edge.name;
-            if (lineName == currentLine && !nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
-                cout << "Aqui dentro" << endl;
+            if (lineName == currentLine && !nodes[v].visited) {
+                cout << "Aqui dentro da linha " << edge.name << endl;
                 foundSameLine = true;
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
                 counter.decreaseKey(v, nodes[v].customWeight.numberOfLines);
@@ -118,13 +118,14 @@ void Graph::dijkstraLines(int origin) {
 
         if (!foundSameLine) {
 
-            for (const Edge &edge : nodes[u].adjacent) {
+            for (const Edge &edge: nodes[u].adjacent) {
                 int v = edge.dest;
                 double w = edge.weight;
                 if (!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
                     cout << "Verifica edge: " << edge.name << endl;
                     nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
-                    counter.decreaseKey(v, 2);
+                    cout << "Metros do v: " << nodes[v].customWeight.meters << endl;
+                    counter.decreaseKey(v, nodes[u].customWeight.numberOfLines+1);
                     nodes[v].parent = u;
                     currentLine = edge.name;
                 }
@@ -135,6 +136,29 @@ void Graph::dijkstraLines(int origin) {
 
 void Graph::dijkstraZones(int origin) {
 
+    MinHeap<int,string> counter = MinHeap<int,string>(nodes.size(),"");
+    for(int i = 1; i <= nodes.size(); i++) {
+        nodes[i].customWeight.numberOfZones = INF;
+        nodes[i].visited = false;
+        nodes[i].parent = INF;
+        counter.insert(i,"");
+    }
+
+    nodes[origin].customWeight.numberOfZones = 0;
+    counter.decreaseKey(origin,"");
+
+    while(counter.getSize()) {
+        int u = counter.removeMin();
+        nodes[u].visited = true;
+        for(const Edge &edge : nodes[u].adjacent) {
+            int destinyNode = edge.dest;
+            string destinyNodeZone = nodes[destinyNode].zone;
+            if(!nodes[destinyNode].visited && nodes[u].zone != nodes[destinyNode].zone) {
+                nodes[destinyNode].customWeight.numberOfZones++;
+                counter.decreaseKey(destinyNode,"nodes[destinyNode]");
+            }
+        }
+    }
 
 }
 
