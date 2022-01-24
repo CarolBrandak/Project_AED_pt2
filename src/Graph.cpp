@@ -136,16 +136,18 @@ void Graph::dijkstraLines(int origin) {
 
 void Graph::dijkstraZones(int origin) {
 
-    MinHeap<int,string> counter = MinHeap<int,string>(nodes.size(),"");
+    MinHeap<int,int> counter = MinHeap<int,int>(nodes.size(),-1);
     for(int i = 1; i <= nodes.size(); i++) {
         nodes[i].customWeight.numberOfZones = INF;
+        nodes[i].customWeight.meters = INF;
+        nodes[i].customWeight.numberOfLines = INF;
         nodes[i].visited = false;
         nodes[i].parent = INF;
-        counter.insert(i,"");
+        counter.insert(i,INF);
     }
 
-    nodes[origin].customWeight.numberOfZones = 0;
-    counter.decreaseKey(origin,"");
+    nodes[origin].customWeight.numberOfZones = 1;
+    counter.decreaseKey(origin,1);
 
     while(counter.getSize()) {
         int u = counter.removeMin();
@@ -153,9 +155,12 @@ void Graph::dijkstraZones(int origin) {
         for(const Edge &edge : nodes[u].adjacent) {
             int destinyNode = edge.dest;
             string destinyNodeZone = nodes[destinyNode].zone;
-            if(!nodes[destinyNode].visited && nodes[u].zone != nodes[destinyNode].zone) {
-                nodes[destinyNode].customWeight.numberOfZones++;
-                counter.decreaseKey(destinyNode,"nodes[destinyNode]");
+            if(!nodes[destinyNode].visited && nodes[u].zone == nodes[destinyNode].zone) {
+                nodes[destinyNode].customWeight.numberOfZones = nodes[u].customWeight.numberOfZones;
+                nodes[destinyNode].customWeight.meters = nodes[u].customWeight.meters + edge.weight;
+                counter.decreaseKey(destinyNode,nodes[destinyNode].customWeight.numberOfZones);
+                nodes[destinyNode].parent=u;
+                
             }
         }
     }
