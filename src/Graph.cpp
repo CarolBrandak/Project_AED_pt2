@@ -46,8 +46,8 @@ void Graph::dijkstraMeters(int origin) {
 
     for (int i = 1 ; i <= nodes.size() - 1 ; i++) {
         nodes[i].customWeight.meters = INF;
-        nodes[i].customWeight.numberOfLines = 0;
-        nodes[i].customWeight.numberOfZones = 0;
+        nodes[i].customWeight.numberOfLines = INF;
+        nodes[i].customWeight.numberOfZones = INF;
         nodes[i].visited = false;
         nodes[i].parent = INF;
         counter.insert(i, INF);
@@ -70,6 +70,72 @@ void Graph::dijkstraMeters(int origin) {
             }
         }
     }
+}
+
+void Graph::dijkstraLines(int origin) {
+
+    MinHeap<int, int> counter = MinHeap<int, int>(nodes.size(), -1);
+
+    for (int i = 1 ; i <= nodes.size() - 1 ; i++) {
+        nodes[i].customWeight.meters = INF;
+        nodes[i].customWeight.numberOfLines = INF;
+        nodes[i].customWeight.numberOfZones = INF;
+        nodes[i].visited = false;
+        nodes[i].parent = INF;
+        counter.insert(i, INF);
+    }
+
+    nodes[origin].customWeight.numberOfLines = 1;
+    nodes[origin].customWeight.meters = 0;
+    counter.decreaseKey(origin, 1);
+
+    string currentLine = " ";
+    bool foundSameLine;
+
+    while (counter.getSize()) {
+
+        int u = counter.removeMin();
+        nodes[u].visited = true;
+        foundSameLine = false;
+
+        // Se encontrar uma edge que leva a uma linha semelhante, então encontra a linha
+        // com menor distância e puxa
+
+        for (const Edge &edge: nodes[u].adjacent) {
+            int v = edge.dest;
+            double w = edge.weight;
+            string lineName = edge.name;
+            if (lineName == currentLine && !nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
+                cout << "Aqui dentro" << endl;
+                foundSameLine = true;
+                nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
+                counter.decreaseKey(v, nodes[v].customWeight.numberOfLines);
+                nodes[v].parent = u;
+            }
+        }
+        // Se não encontrar uma linha semelhante, então adopta a linha de menor distância
+        // Fica igual ao "Meters", mas adiciona-se ao contador e atualiza-se a currentLine
+
+        if (!foundSameLine) {
+
+            for (const Edge &edge : nodes[u].adjacent) {
+                int v = edge.dest;
+                double w = edge.weight;
+                if (!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
+                    cout << "Verifica edge: " << edge.name << endl;
+                    nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
+                    counter.decreaseKey(v, 2);
+                    nodes[v].parent = u;
+                    currentLine = edge.name;
+                }
+            }
+        }
+    }
+}
+
+void Graph::dijkstraZones(int origin) {
+
+
 }
 
 list<Node> Graph::dijkstraPath(int origin, int destination, int type) {

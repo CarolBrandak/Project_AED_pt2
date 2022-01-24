@@ -121,7 +121,7 @@ void STCP::showPath(string name1, string name2, int type) {
         " and coordinates: " << node.coordinate.latitude << " " << node.coordinate.longitude << endl;
     }
 
-    cout << "Distancia total percorrida: " << graph.getNode(stops[name2]).customWeight.meters << endl;
+    cout << "Distancia total percorrida: " << graph.getNode(stops[name2]).customWeight.meters << " metros" << endl;
 }
 
 #endif // PROJECT_AED_PT2_STCP_CPP
