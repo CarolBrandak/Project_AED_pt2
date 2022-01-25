@@ -151,7 +151,7 @@ void Graph::dijkstraZones(int origin) {
 
     while(counter.getSize()) {
         bool foundSameZone= false;
-        int u = counter.removeMin();
+        int u = counter.removeMin(); // ->>>>>>>>>>>>>><< ERROOOOOOOOOOOOOOOOOOOOOOO
         nodes[u].visited = true;
         for(const Edge &edge : nodes[u].adjacent) {
             int destinyNode = edge.dest;
@@ -167,13 +167,11 @@ void Graph::dijkstraZones(int origin) {
         if (!foundSameZone){
             for(const Edge &edge : nodes[u].adjacent) {
                 int destinyNode = edge.dest;
-                string destinyNodeZone = nodes[destinyNode].zone;
                 if(!nodes[destinyNode].visited && nodes[u].customWeight.meters + edge.weight < nodes[destinyNode].customWeight.meters) {
                     nodes[destinyNode].customWeight.meters = nodes[u].customWeight.meters + edge.weight;
                     nodes[destinyNode].customWeight.numberOfZones = nodes[u].customWeight.numberOfZones +1;
                     counter.decreaseKey(destinyNode, nodes[destinyNode].customWeight.numberOfZones);
                     nodes[destinyNode].parent = u;
-
                 }
             }
         }
