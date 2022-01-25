@@ -111,7 +111,7 @@ void Graph::dijkstraZones(int origin) {
         for (const Edge &edge : nodes[u].adjacent) {
             int v = edge.dest;
             double w = edge.weight;
-            if(!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
+            if(!nodes[v].visited && nodes[u].customWeight.numberOfZones < nodes[v].customWeight.numberOfZones) {
                 counter.erase({{nodes[v].customWeight.numberOfZones, nodes[v].customWeight.meters}, v});
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
                 nodes[v].parent = u;
