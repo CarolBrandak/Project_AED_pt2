@@ -54,9 +54,9 @@ void Graph::dijkstraMeters(int origin) {
     }
 
     nodes[origin].customWeight.meters = 0;
+    nodes[origin].parent = origin;
     counter.erase({INF, origin});
     counter.insert({0, origin});
-    nodes[origin].parent = origin;
 
     while (!counter.empty()) {
 
@@ -84,43 +84,40 @@ void Graph::dijkstraLines(int origin) {
 
 void Graph::dijkstraZones(int origin) {
 
-    MinHeap<int,int> counter = MinHeap<int,int>(nodes.size(),-1);
-    for(int i = 1; i <= nodes.size(); i++) {
+    cout << "passou pelo zones" << endl;
+    set<pair<pair<int, double>, int>> counter;
+
+    for(int i = 1 ; i <= nodes.size() - 1 ; i++) {
         nodes[i].customWeight.numberOfZones = INF;
         nodes[i].customWeight.meters = INF;
         nodes[i].customWeight.numberOfLines = INF;
         nodes[i].visited = false;
         nodes[i].parent = INF;
-        counter.insert(i,INF);
+        counter.insert(make_pair(make_pair(INF, INF), i));
     }
 
     nodes[origin].customWeight.numberOfZones = 1;
-    counter.decreaseKey(origin,1);
+    nodes[origin].customWeight.meters = 0;
+    nodes[origin].parent = origin;
+    counter.erase({{INF, INF}, origin});
+    counter.insert({{1, 0}, origin});
 
-    while(counter.getSize()) {
-        bool foundSameZone= false;
-        int u = counter.removeMin(); // ->>>>>>>>>>>>>><< ERROOOOOOOOOOOOOOOOOOOOOOO
+    while (!counter.empty()) {
+
+        int u = counter.begin()->second;
+        counter.erase(counter.begin());
         nodes[u].visited = true;
-        for(const Edge &edge : nodes[u].adjacent) {
-            int destinyNode = edge.dest;
-            string destinyNodeZone = nodes[destinyNode].zone;
-            if(!nodes[destinyNode].visited && nodes[u].zone == nodes[destinyNode].zone) {
-                nodes[destinyNode].customWeight.numberOfZones = nodes[u].customWeight.numberOfZones;
-                nodes[destinyNode].customWeight.meters = nodes[u].customWeight.meters + edge.weight;
-                counter.decreaseKey(destinyNode,nodes[destinyNode].customWeight.numberOfZones);
-                nodes[destinyNode].parent=u;
-                foundSameZone= true;
-            }
-        }
-        if (!foundSameZone){
-            for(const Edge &edge : nodes[u].adjacent) {
-                int destinyNode = edge.dest;
-                if(!nodes[destinyNode].visited && nodes[u].customWeight.meters + edge.weight < nodes[destinyNode].customWeight.meters) {
-                    nodes[destinyNode].customWeight.meters = nodes[u].customWeight.meters + edge.weight;
-                    nodes[destinyNode].customWeight.numberOfZones = nodes[u].customWeight.numberOfZones +1;
-                    counter.decreaseKey(destinyNode, nodes[destinyNode].customWeight.numberOfZones);
-                    nodes[destinyNode].parent = u;
-                }
+
+        for (const Edge &edge : nodes[u].adjacent) {
+            int v = edge.dest;
+            double w = edge.weight;
+            if(!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
+                counter.erase({{nodes[v].customWeight.numberOfZones, nodes[v].customWeight.meters}, v});
+                nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
+                nodes[v].parent = u;
+                nodes[v].customWeight.numberOfZones = nodes[u].zone == nodes[v].zone ?
+                        nodes[u].customWeight.numberOfZones : nodes[u].customWeight.numberOfZones + 1;
+                counter.insert(make_pair(make_pair(nodes[v].customWeight.numberOfZones, nodes[v].customWeight.meters), v));
             }
         }
     }
