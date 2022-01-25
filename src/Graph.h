@@ -39,6 +39,7 @@ struct Node {
     CustomWeight customWeight;
     bool visited;
     int parent;
+    string currentLine;
 };
 
 class Graph {

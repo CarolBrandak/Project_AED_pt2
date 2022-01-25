@@ -54,6 +54,7 @@ void Graph::dijkstraMeters(int origin) {
     }
 
     nodes[origin].customWeight.meters = 0;
+    nodes[origin].customWeight.numberOfZones = 1;
     nodes[origin].parent = origin;
     counter.erase({INF, origin});
     counter.insert({0, origin});
@@ -70,6 +71,7 @@ void Graph::dijkstraMeters(int origin) {
             if (!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
                 counter.erase({nodes[v].customWeight.meters, v});
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
+                nodes[v].customWeight.numberOfZones = nodes[u].zone == nodes[v].zone ? nodes[u].customWeight.numberOfZones : nodes[u].customWeight.numberOfZones + 1;
                 nodes[v].parent = u;
                 counter.insert({nodes[v].customWeight.meters, v});
             }
@@ -79,12 +81,64 @@ void Graph::dijkstraMeters(int origin) {
 
 void Graph::dijkstraLines(int origin) {
 
-    // TODO
+    set<pair<pair<int, double>, int>> counter;
+
+    for(int i = 1 ; i <= nodes.size() - 1 ; i++) {
+        nodes[i].customWeight.numberOfZones = INF;
+        nodes[i].customWeight.meters = INF;
+        nodes[i].customWeight.numberOfLines = INF;
+        nodes[i].visited = false;
+        nodes[i].parent = INF;
+        nodes[i].currentLine = " ";
+        counter.insert(make_pair(make_pair(INF, INF), i));
+    }
+
+    nodes[origin].customWeight.numberOfLines = 0;
+    nodes[origin].customWeight.numberOfZones = 1;
+    nodes[origin].customWeight.meters = 0;
+    nodes[origin].parent = origin;
+    nodes[origin].currentLine = "origin";
+    counter.erase({{INF, INF}, origin});
+    counter.insert({{0, 0}, origin});
+
+    while (!counter.empty()) {
+
+        int u = counter.begin()->second;
+        counter.erase(counter.begin());
+        nodes[u].visited = true;
+
+        string lastLine = nodes[u].currentLine; // verde
+        string currentLine;
+
+        for (const Edge &edge : nodes[u].adjacent) {
+            int v = edge.dest;
+            double w = edge.weight;
+            currentLine = edge.name;
+            if(!nodes[v].visited && nodes[u].customWeight.numberOfLines < nodes[v].customWeight.numberOfLines) {
+
+                counter.erase({{nodes[v].customWeight.numberOfLines, nodes[v].customWeight.meters}, v});
+                nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
+                nodes[v].parent = u;
+
+                if (lastLine == currentLine) {
+                    nodes[v].customWeight.numberOfLines = nodes[u].customWeight.numberOfLines;
+                    nodes[v].currentLine = lastLine;
+                } else {
+                    nodes[v].customWeight.numberOfLines = nodes[u].customWeight.numberOfLines + 1;
+                    nodes[v].currentLine = currentLine;
+                }
+
+                nodes[v].customWeight.numberOfZones = nodes[u].zone == nodes[v].zone ?
+                                                      nodes[u].customWeight.numberOfZones : nodes[u].customWeight.numberOfZones + 1;
+
+                counter.insert(make_pair(make_pair(nodes[v].customWeight.numberOfLines, nodes[v].customWeight.meters), v));
+            }
+        }
+    }
 }
 
 void Graph::dijkstraZones(int origin) {
 
-    cout << "passou pelo zones" << endl;
     set<pair<pair<int, double>, int>> counter;
 
     for(int i = 1 ; i <= nodes.size() - 1 ; i++) {
