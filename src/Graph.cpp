@@ -42,7 +42,7 @@ Node Graph::getNode(int index) {
 
 void Graph::dijkstraMeters(int origin) {
 
-    MinHeap<int, double> counter = MinHeap<int, double>(nodes.size(), -1);
+    set<pair<double, int>> counter;
 
     for (int i = 1 ; i <= nodes.size() - 1 ; i++) {
         nodes[i].customWeight.meters = INF;
@@ -50,23 +50,28 @@ void Graph::dijkstraMeters(int origin) {
         nodes[i].customWeight.numberOfZones = INF;
         nodes[i].visited = false;
         nodes[i].parent = INF;
-        counter.insert(i, INF);
+        counter.insert(make_pair(INF, i));
     }
 
     nodes[origin].customWeight.meters = 0;
-    counter.decreaseKey(origin, 0);
+    counter.erase({INF, origin});
+    counter.insert({0, origin});
+    nodes[origin].parent = origin;
 
-    while (counter.getSize()) {
+    while (!counter.empty()) {
 
-        int u = counter.removeMin();
+        int u = counter.begin()->second;
+        counter.erase(counter.begin());
         nodes[u].visited = true;
+
         for (const Edge &edge : nodes[u].adjacent) {
             int v = edge.dest;
             double w = edge.weight;
             if (!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
+                counter.erase({nodes[v].customWeight.meters, v});
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
-                counter.decreaseKey(v, nodes[v].customWeight.meters);
                 nodes[v].parent = u;
+                counter.insert({nodes[v].customWeight.meters, v});
             }
         }
     }
@@ -74,64 +79,7 @@ void Graph::dijkstraMeters(int origin) {
 
 void Graph::dijkstraLines(int origin) {
 
-    MinHeap<int, int> counter = MinHeap<int, int>(nodes.size(), -1);
-
-    for (int i = 1; i <= nodes.size() - 1; i++) {
-        nodes[i].customWeight.meters = INF;
-        nodes[i].customWeight.numberOfLines = INF;
-        nodes[i].customWeight.numberOfZones = INF;
-        nodes[i].visited = false;
-        nodes[i].parent = INF;
-        counter.insert(i, INF);
-    }
-
-    nodes[origin].customWeight.numberOfLines = 1;
-    nodes[origin].customWeight.meters = 0;
-    counter.decreaseKey(origin, 1);
-
-    string currentLine = " ";
-    bool foundSameLine;
-
-    while (counter.getSize()) {
-
-        int u = counter.removeMin();
-        nodes[u].visited = true;
-        foundSameLine = false;
-
-        // Se encontrar uma edge que leva a uma linha semelhante, então encontra a linha
-        // com menor distância e puxa
-
-        for (const Edge &edge: nodes[u].adjacent) {
-            int v = edge.dest;
-            double w = edge.weight;
-            string lineName = edge.name;
-            if (lineName == currentLine && !nodes[v].visited) {
-                cout << "Aqui dentro da linha " << edge.name << endl;
-                foundSameLine = true;
-                nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
-                counter.decreaseKey(v, nodes[v].customWeight.numberOfLines);
-                nodes[v].parent = u;
-            }
-        }
-        // Se não encontrar uma linha semelhante, então adopta a linha de menor distância
-        // Fica igual ao "Meters", mas adiciona-se ao contador e atualiza-se a currentLine
-
-        if (!foundSameLine) {
-
-            for (const Edge &edge: nodes[u].adjacent) {
-                int v = edge.dest;
-                double w = edge.weight;
-                if (!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
-                    cout << "Verifica edge: " << edge.name << endl;
-                    nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
-                    cout << "Metros do v: " << nodes[v].customWeight.meters << endl;
-                    counter.decreaseKey(v, nodes[u].customWeight.numberOfLines+1);
-                    nodes[v].parent = u;
-                    currentLine = edge.name;
-                }
-            }
-        }
-    }
+    // TODO
 }
 
 void Graph::dijkstraZones(int origin) {
