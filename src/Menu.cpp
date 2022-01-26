@@ -27,7 +27,6 @@ void Menu::getMenu() {
 
 void Menu::mainMenu() {
 
-    int option;
     do {
         cout << "=================STCP==================" << endl;
         cout << "=======================================" << endl;
@@ -40,13 +39,14 @@ void Menu::mainMenu() {
         cin.clear();
         cin.ignore(1000, '\n');
 
-    } while (option < 1 || option > 3);
+    } while (option < 1 || option > 2);
 
     switch (option) {
         case 1:
             menuState.push(ROUTE_TYPE_MENU);
             break;
         case 2:
+        default:
             menuState.pop();
             break;
     }
@@ -90,14 +90,14 @@ void Menu::coordTypeMenu() {
         cout << "2 - Por Paragens?" << endl;
         cout << "3 - Voltar ao menu principal" << endl;
         cout << "Escolha: ";
-        cin >> optionCoord;
+        cin >> option;
         cout << "=======================================" << endl;
-        if (optionCoord < 1 || optionCoord > 3) cout << "Erro, por favor tente novamente!" << endl;
+        if (option < 1 || option > 3) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
-    } while (optionCoord < 1 || optionCoord > 3);
+    } while (option < 1 || option > 3);
 
-    switch (optionCoord) {
+    switch (option) {
         case 1:
             menuState.push(COORDINATE_MENU);
             break;
@@ -116,7 +116,6 @@ void Menu::coordInputMenu() {
 
     double departureNorth, departureWest,
            arrivalNorth, arrivalWest;
-    Coordinate departureCoordinate, arrivalCoordinate;
     cout << "Insira as coordenadas de onde quer partir" << endl;
     cout << "Coordenada Norte: ";
     cin >> departureNorth;
@@ -129,8 +128,9 @@ void Menu::coordInputMenu() {
     cout << "\nCoordenada Oeste: ";
     cin >> arrivalWest;
 
-    departureCoordinate = {departureNorth, departureWest};
-    arrivalCoordinate = {arrivalNorth,arrivalWest};
+    Coordinate departureCoordinate = {departureNorth, departureWest};
+    Coordinate arrivalCoordinate = {arrivalNorth,arrivalWest};
+    stcp.createFootItineraries(footInputMenu());
     stcp.showPath(departureCoordinate,arrivalCoordinate,optionType);
 }
 
@@ -140,14 +140,15 @@ void Menu::stopInputMenu() {
     cin >> departureStop;
     cout << "\nInsira o nome da paragem destino: ";
     cin >> arrivalStop;
+    stcp.createFootItineraries(footInputMenu());
     stcp.showPath(departureStop,arrivalStop,optionType);
 }
 
 double Menu::footInputMenu() {
-
-
-
-    return;
+    double footMeters;
+    cout << "Qual é a quantidade de metros que está disposto a andar a pé? ";
+    cin >> footMeters;
+    return footMeters;
 }
 
 #endif // PROJECT_AED_PT2_MENU_CPP

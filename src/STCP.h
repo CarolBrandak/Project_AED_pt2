@@ -33,6 +33,12 @@ class STCP {
         void showPath(const Coordinate &c1, const Coordinate &c2, int type);
         void showPath(const string &name1, const Coordinate &c2, int type);
         void showPath(const Coordinate &c1, const string &name2, int type);
+        void disableStop(const string &name);
+        void disableLine(const string &line);
+        void disableArea(const Coordinate &coordinate, double distance);
+        void disableArea(const string &name, double distance);
+        void disableZone(const string &zone);
+        void activateAllStops();
 };
 
 #endif //PROJECT_AED_PT2_STCP_H

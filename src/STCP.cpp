@@ -136,14 +136,48 @@ void STCP::showPath(const string &name1, const string &name2, int type) {
 
     list<Node> nodes = graph.dijkstraPath(stops[name1], stops[name2], type);
 
-    // TODO LATER
-    for (const Node &node : nodes) {
-        cout << "Code: " << node.code << ", zone: " << node.zone <<
-        " and coordinates: " << node.coordinate.latitude << " " << node.coordinate.longitude << endl;
-    }
+    if (!nodes.empty()) {
 
-    cout << "Distancia total percorrida: " << graph.getNode(stops[name2]).customWeight.meters << " metros, "
-    << graph.getNode(stops[name2]).customWeight.numberOfZones << " zonas e " << graph.getNode(stops[name2]).customWeight.numberOfLines << " lines." << endl;
+        // TODO LATER
+        for (const Node &node : nodes) {
+            cout << "Code: " << node.code << ", zone: " << node.zone <<
+                 " and coordinates: " << node.coordinate.latitude << " " << node.coordinate.longitude << endl;
+        }
+
+        cout << "Distancia total percorrida: " << graph.getNode(stops[name2]).customWeight.meters << " metros, "
+             << graph.getNode(stops[name2]).customWeight.numberOfZones << " zonas e " << graph.getNode(stops[name2]).customWeight.numberOfLines << " lines." << endl;
+
+    }
+}
+
+void STCP::disableStop(const string &name) {
+    if (stops.find(name) == stops.end()) {
+        cout << "Nome de paragem invalido" << endl;
+    } else graph.disableStop(stops[name]);
+}
+
+void STCP::disableLine(const string &line) {
+    if (lines.find(line) == lines.end()) {
+        cout << "Nome de linha invalido" << endl;
+    } else graph.disableLine(line);
+}
+
+void STCP::disableArea(const Coordinate &coordinate, double distance) {
+    disableArea(graph.getNode(coordinate).name, distance);
+}
+
+void STCP::disableArea(const string &name, double distance) {
+    if (stops.find(name) == stops.end()) {
+        cout << "Nome de paragem invalido" << endl;
+    } else graph.disableArea(stops[name], distance);
+}
+
+void STCP::disableZone(const string &zone) {
+    graph.disableZone(zone);
+}
+
+void STCP::activateAllStops() {
+    graph.activateAllStops();
 }
 
 #endif // PROJECT_AED_PT2_STCP_CPP

@@ -257,4 +257,39 @@ Node Graph::getNode(const Coordinate &coordinate) {
     return result;
 }
 
+void Graph::disableStop(int stop) {
+    nodes[stop].available = false;
+}
+
+void Graph::disableLine(const string &line) {
+    for (Node &node : nodes) {
+        for (const Edge &edge : node.adjacent) {
+            if (edge.name == line) node.available = false;
+        }
+    }
+}
+
+void Graph::disableArea(int stop, double distance) {
+
+    Coordinate origin = nodes[stop].coordinate;
+    for (Node &node : nodes) {
+        Coordinate destiny = node.coordinate;
+        if (computeDistance(origin.latitude, origin.longitude,
+                            destiny.latitude, destiny.longitude) <= distance) node.available = false;
+    }
+
+}
+
+void Graph::disableZone(const string &zone) {
+    for (Node &node : nodes) {
+        if (node.zone == zone) node.available = false;
+    }
+}
+
+void Graph::activateAllStops() {
+    for (Node &node : nodes) {
+        node.available = true;
+    }
+}
+
 #endif // PROJECT_AED_PT2_GRAPH_CPP

@@ -22,7 +22,7 @@ private:
 
     int optionType;
 
-    int optionCoord;
+    int option;
 
     /**
      * @var menuState - stack used to navigate through the menu
