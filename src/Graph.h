@@ -9,7 +9,7 @@
 #include <iostream>
 #include <cmath>
 #include <set>
-#include "MinHeap.h"
+#include <queue>
 using namespace std;
 
 struct Coordinate {
@@ -40,6 +40,7 @@ struct Node {
     bool visited;
     int parent;
     string currentLine;
+    int distance;
 };
 
 class Graph {
@@ -59,6 +60,7 @@ class Graph {
         void addEdge(int origin, int destiny, const string &name);
         void createFootItineraries(int distance);
         void deleteFootItineraries();
+        void BFS(int origin);
         void dijkstraMeters(int origin);
         void dijkstraLines(int origin);
         void dijkstraZones(int origin);

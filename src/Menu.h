@@ -1,11 +1,16 @@
 #ifndef PROJECT_AED_PT2_MENU_H
 #define PROJECT_AED_PT2_MENU_H
 
+#include "STCP.h"
 #include <iostream>
 #include <stack>
 
 #define MAIN_MENU 0
 #define ROUTE_TYPE_MENU 1
+#define COORD_TYPE_MENU 2
+#define COORDINATE_MENU 3
+#define STOP_MENU 4
+#define FOOT_MENU 5
 
 class Menu {
 
@@ -14,7 +19,10 @@ private:
     /**
      * @var option - user menu option
      */
-    int option;
+
+    int optionType;
+
+    int optionCoord;
 
     /**
      * @var menuState - stack used to navigate through the menu
@@ -26,7 +34,7 @@ private:
      * */
     void getMenu();
 
-
+    STCP stcp;
 
 public:
 
@@ -49,6 +57,10 @@ public:
      void routeTypeMenu();
 
     void coordTypeMenu();
+
+    void coordInputMenu();
+    void stopInputMenu();
+    int footInputMenu();
 };
 
 #endif // PROJECT_AED_PT2_MENU_H

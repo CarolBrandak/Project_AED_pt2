@@ -112,7 +112,20 @@ void STCP::createLines() {
     file.close();
 }
 
-void STCP::showPath(string name1, string name2, int type) {
+void STCP::showPath(const Coordinate &c1, const Coordinate &c2, int type) {
+    showPath(graph.getNode(c1).name, graph.getNode(c2).name, type);
+}
+
+void STCP::showPath(const string &name1, const Coordinate &c2, int type) {
+    showPath(name1, graph.getNode(c2).name, type);
+}
+
+void STCP::showPath(const Coordinate &c1, const string &name2, int type) {
+    showPath(graph.getNode(c1).name, name2, type);
+}
+
+void STCP::showPath(const string &name1, const string &name2, int type) {
+
 
     list<Node> nodes = graph.dijkstraPath(stops[name1], stops[name2], type);
 

@@ -40,6 +40,32 @@ Node Graph::getNode(int index) {
     return this->nodes[index];
 }
 
+void Graph::BFS(int origin) {
+
+    for (int i = 1 ; i < nodes.size() ; i++) {
+        nodes[i].visited = false;
+    }
+
+    queue<int> visitedNodes = {};
+    visitedNodes.push(origin);
+    nodes[origin].visited = true;
+
+    while (!visitedNodes.empty()) {
+
+        int node = visitedNodes.front();
+        visitedNodes.pop();
+
+        for (const Edge &edge : nodes[node].adjacent) {
+
+            int n = edge.dest;
+            if (!nodes[n].visited) {
+                visitedNodes.push(n);
+                nodes[n].visited = true;
+            }
+        }
+    }
+}
+
 void Graph::dijkstraMeters(int origin) {
 
     set<pair<double, int>> counter;

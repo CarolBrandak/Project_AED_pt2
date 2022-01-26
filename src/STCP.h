@@ -29,7 +29,10 @@ class STCP {
         ~STCP();
         Node getStop(const string &code);
         void createFootItineraries(int distance);
-        void showPath(string name1, string name2, int type);
+        void showPath(const string &name1, const string &name2, int type);
+        void showPath(const Coordinate &c1, const Coordinate &c2, int type);
+        void showPath(const string &name1, const Coordinate &c2, int type);
+        void showPath(const Coordinate &c1, const string &name2, int type);
 };
 
 #endif //PROJECT_AED_PT2_STCP_H
