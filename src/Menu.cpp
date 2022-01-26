@@ -59,8 +59,8 @@ void Menu::routeTypeMenu() {
         cout << "=============Tipos de Rota=============" << endl;
         cout << "=======================================" << endl;
         cout << "1 - Passando por menos paragens" << endl;
-        cout << "2 - Percorrendo menor distância" << endl;
-        cout << "3 - Mudar de autocarro mínimas vezes" << endl;
+        cout << "2 - Percorrendo menor distancia" << endl;
+        cout << "3 - Mudar de autocarro minimas vezes" << endl;
         cout << "4 - Percurso mais barato" << endl;
         cout << "5 - Voltar ao menu anterior" << endl;
         cout << "Escolha: ";
@@ -132,6 +132,9 @@ void Menu::coordInputMenu() {
     Coordinate arrivalCoordinate = {arrivalNorth,arrivalWest};
     stcp.createFootItineraries(footInputMenu());
     stcp.showPath(departureCoordinate,arrivalCoordinate,optionType);
+    menuState.pop();
+    menuState.pop();
+    getMenu();
 }
 
 void Menu::stopInputMenu() {
@@ -142,11 +145,14 @@ void Menu::stopInputMenu() {
     cin >> arrivalStop;
     stcp.createFootItineraries(footInputMenu());
     stcp.showPath(departureStop,arrivalStop,optionType);
+    menuState.pop();
+    menuState.pop();
+    getMenu();
 }
 
 double Menu::footInputMenu() {
     double footMeters;
-    cout << "Qual é a quantidade de metros que está disposto a andar a pé? ";
+    cout << "Qual e a quantidade de metros que esta disposto a andar a pe? ";
     cin >> footMeters;
     return footMeters;
 }

@@ -94,7 +94,7 @@ void Graph::dijkstraMeters(int origin) {
         for (const Edge &edge : nodes[u].adjacent) {
             int v = edge.dest;
             double w = edge.weight;
-            if (!nodes[v].visited && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
+            if (!nodes[v].visited && nodes[v].available && nodes[u].customWeight.meters + w < nodes[v].customWeight.meters) {
                 counter.erase({nodes[v].customWeight.meters, v});
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
                 nodes[v].customWeight.numberOfZones = nodes[u].zone == nodes[v].zone ? nodes[u].customWeight.numberOfZones : nodes[u].customWeight.numberOfZones + 1;
@@ -205,14 +205,20 @@ void Graph::dijkstraZones(int origin) {
 
 list<Node> Graph::dijkstraPath(int origin, int destination, int type) {
 
+    list<Node> path = {};
+
+    if (!nodes[origin].available || !nodes[destination].available) {
+        cout << "Origem/Destino não disponivel" << endl;
+        return path;
+    }
+
     switch (type) {
-        case 1: BFS(origin);
+        case 1: BFS(origin); break;
         case 2: dijkstraMeters(origin); break;
         case 3: dijkstraLines(origin); break;
         case 4: dijkstraZones(origin); break;
     }
 
-    list<Node> path = {};
     if (nodes[destination].customWeight.meters == INF) return path;
 
     int i = destination;
@@ -249,8 +255,9 @@ Node Graph::getNode(const Coordinate &coordinate) {
     for (int i = 1 ; i < nodes.size() ; i++) {
         double attempDistance = computeDistance(nodes[i].coordinate.latitude, nodes[i].coordinate.longitude,
                                                 coordinate.latitude, coordinate.longitude);
-        if (distance < attempDistance) {
+        if (distance > attempDistance) {
             result = nodes[i];
+            cout << "Trocou para o no: " << result.name << endl;
             distance = attempDistance;
         }
     }

@@ -53,7 +53,7 @@ void STCP::createStops() {
         }
 
     } else {
-        cout << "O ficheiro " << STOPS << " não existe!" << endl;
+        cout << "O ficheiro " << STOPS << " nao existe!" << endl;
     }
     file.close();
 }
@@ -82,7 +82,7 @@ void STCP::createLine(const string &code) {
             }
 
         } else {
-            cout << "O ficheiro " << fileName << " não existe!" << endl;
+            cout << "O ficheiro " << fileName << " nao existe!" << endl;
         }
         file.close();
     }
@@ -107,27 +107,28 @@ void STCP::createLines() {
         }
 
     } else {
-        cout << "O ficheiro " << LINES << " não existe!" << endl;
+        cout << "O ficheiro " << LINES << " nao existe!" << endl;
     }
     file.close();
 }
 
 void STCP::showPath(const Coordinate &c1, const Coordinate &c2, int type) {
-    showPath(graph.getNode(c1).name, graph.getNode(c2).name, type);
+    showPath(graph.getNode(c1).code, graph.getNode(c2).code, type);
 }
 
 void STCP::showPath(const string &name1, const Coordinate &c2, int type) {
-    showPath(name1, graph.getNode(c2).name, type);
+    showPath(name1, graph.getNode(c2).code, type);
 }
 
 void STCP::showPath(const Coordinate &c1, const string &name2, int type) {
-    showPath(graph.getNode(c1).name, name2, type);
+    showPath(graph.getNode(c1).code, name2, type);
 }
 
 void STCP::showPath(const string &name1, const string &name2, int type) {
 
     auto it1 = stops.find(name1);
     auto it2 = stops.find(name2);
+    cout << "Name 1 " << name1 << " and name2 " << name2 << endl;
 
     if (it1 == stops.end() || it2 == stops.end()) {
         cout << "Paragem invalida!" << endl;
