@@ -114,21 +114,36 @@ void Menu::coordTypeMenu() {
 
 void Menu::coordInputMenu() {
 
-    double n, w;
-    cout << "Coordenada Norte ";
-    cin >> n;
-    cout << "Coordenada Oeste: ";
-    cin >> w;
-    Coordinate c = {n, w};
-    Node stop = stcp.getStop(c);
+    double departureNorth, departureWest,
+           arrivalNorth, arrivalWest;
+    Coordinate departureCoordinate, arrivalCoordinate;
+    cout << "Insira as coordenadas de onde quer partir" << endl;
+    cout << "Coordenada Norte: ";
+    cin >> departureNorth;
+    cout << "\nCoordenada Oeste: ";
+    cin >> departureWest;
+
+    cout << "Insira as coordenadas do destino" << endl;
+    cout << "Coordenada Norte: ";
+    cin >> arrivalNorth;
+    cout << "\nCoordenada Oeste: ";
+    cin >> arrivalWest;
+
+    departureCoordinate = {departureNorth, departureWest};
+    arrivalCoordinate = {arrivalNorth,arrivalWest};
+    stcp.showPath(departureCoordinate,arrivalCoordinate,optionType);
 }
 
 void Menu::stopInputMenu() {
-
-
+    string departureStop, arrivalStop;
+    cout << "Insira o nome da paragem de onde quer partir: ";
+    cin >> departureStop;
+    cout << "\nInsira o nome da paragem destino: ";
+    cin >> arrivalStop;
+    stcp.showPath(departureStop,arrivalStop,optionType);
 }
 
-int Menu::footInputMenu() {
+double Menu::footInputMenu() {
 
 
 

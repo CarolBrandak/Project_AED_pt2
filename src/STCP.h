@@ -28,7 +28,7 @@ class STCP {
         STCP();
         ~STCP();
         Node getStop(const string &code);
-        void createFootItineraries(int distance);
+        void createFootItineraries(double distance);
         void showPath(const string &name1, const string &name2, int type);
         void showPath(const Coordinate &c1, const Coordinate &c2, int type);
         void showPath(const string &name1, const Coordinate &c2, int type);

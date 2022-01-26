@@ -206,9 +206,10 @@ void Graph::dijkstraZones(int origin) {
 list<Node> Graph::dijkstraPath(int origin, int destination, int type) {
 
     switch (type) {
-        case 1: dijkstraMeters(origin); break;
-        case 2: dijkstraLines(origin); break;
-        case 3: dijkstraZones(origin); break;
+        case 1: BFS(origin);
+        case 2: dijkstraMeters(origin); break;
+        case 3: dijkstraLines(origin); break;
+        case 4: dijkstraZones(origin); break;
     }
 
     list<Node> path = {};
@@ -229,7 +230,7 @@ void Graph::deleteFootItineraries() {
     }
 }
 
-void Graph::createFootItineraries(int distance) {
+void Graph::createFootItineraries(double distance) {
 
     deleteFootItineraries();
 

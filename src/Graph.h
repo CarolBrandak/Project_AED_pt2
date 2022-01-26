@@ -49,6 +49,7 @@ class Graph {
 
         vector<Node> nodes;
         double computeDistance(double lat1, double lon1, double lat2, double lon2);
+        void deleteFootItineraries();
 
     public:
 
@@ -58,8 +59,7 @@ class Graph {
         Node getNode(int index);
         Node getNode(const Coordinate &coordinate);
         void addEdge(int origin, int destiny, const string &name);
-        void createFootItineraries(int distance);
-        void deleteFootItineraries();
+        void createFootItineraries(double distance);
         void BFS(int origin);
         void dijkstraMeters(int origin);
         void dijkstraLines(int origin);

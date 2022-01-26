@@ -20,7 +20,7 @@ Node STCP::getStop(const string &code) {
     return graph.getNode(stops[code]);
 }
 
-void STCP::createFootItineraries(int distance) {
+void STCP::createFootItineraries(double distance) {
     graph.createFootItineraries(distance);
 }
 
@@ -126,9 +126,17 @@ void STCP::showPath(const Coordinate &c1, const string &name2, int type) {
 
 void STCP::showPath(const string &name1, const string &name2, int type) {
 
+    auto it1 = stops.find(name1);
+    auto it2 = stops.find(name2);
+
+    if (it1 == stops.end() || it2 == stops.end()) {
+        cout << "Paragem invalida!" << endl;
+        return;
+    }
 
     list<Node> nodes = graph.dijkstraPath(stops[name1], stops[name2], type);
 
+    // TODO LATER
     for (const Node &node : nodes) {
         cout << "Code: " << node.code << ", zone: " << node.zone <<
         " and coordinates: " << node.coordinate.latitude << " " << node.coordinate.longitude << endl;

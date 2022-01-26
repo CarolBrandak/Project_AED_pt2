@@ -59,8 +59,10 @@ public:
     void coordTypeMenu();
 
     void coordInputMenu();
+
     void stopInputMenu();
-    int footInputMenu();
+
+    double footInputMenu();
 };
 
 #endif // PROJECT_AED_PT2_MENU_H
