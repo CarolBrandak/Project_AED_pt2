@@ -60,7 +60,7 @@ public:
 
     void coordInputMenu();
 
-    void disableLocationMenu();
+    void searchDefinitionsMenu();
 
     void stopInputMenu();
 

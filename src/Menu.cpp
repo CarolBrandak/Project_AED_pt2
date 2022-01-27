@@ -82,30 +82,30 @@ void Menu::routeTypeMenu() {
     getMenu();
 }
 
-void Menu::disableLocationMenu() {
+void Menu::searchDefinitionsMenu() {
+    bool insert;
     do {
-        cout << "=============Desativar Location=============" << endl;
-        cout << "=======================================" << endl;
-        cout << "1 - Passando por menos paragens" << endl;
-        cout << "2 - Percorrendo menor distancia" << endl;
-        cout << "3 - Mudar de autocarro minimas vezes" << endl;
-        cout << "4 - Percurso mais barato" << endl;
-        cout << "5 - Voltar ao menu anterior" << endl;
+        cout << "=============Definições de Procura=============" << endl;
+        cout << "===============================================" << endl;
+        cout << "1 - Desativar 1 ou mais paragens" << endl;
+        cout << "2 - Desativar 1 ou mais linhas" << endl;
+        cout << "3 - Desativar 1 ou mais zonas" << endl;
+        cout << "4 - Desativar uma área especifica" << endl;
+        cout << "5 - Ativar todas paragens" << endl;
+        cout << "6 - Voltar ao menu anterior" << endl;
         cout << "Escolha: ";
-        cin >> optionType;
-        cout << "=======================================" << endl;
-        if (optionType < 1 || optionType > 5) cout << "Erro, por favor tente novamente!" << endl;
+        cin >> option;
+        cout << "===============================================" << endl;
+        if (option < 1 || option > 6) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
 
-    } while (optionType < 1 || optionType > 5);
+    } while (option < 1 || option > 6);
 
     switch (optionType) {
-        case 1: case 2: case 3: case 4:
-            menuState.push(COORD_TYPE_MENU);
-            break;
-        case 5:
-            menuState.pop();
+        do {
+
+        } while ()
     }
     getMenu();
 }
