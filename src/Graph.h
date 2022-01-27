@@ -71,7 +71,7 @@ struct Edge {
 };
 
 /**
- * Struct that represents a Stop in Oporto's city
+ * Struct that represents a Stop in Porto
  */
 struct Node {
 
@@ -132,23 +132,79 @@ struct Node {
 };
 
 /**
- * 
+ * Class that represents a Graph and its entire structure
  */
 class Graph {
 
     private:
 
+        /**
+         * @var nodes, a vector containing Node type struct that includes all nodes of current Graph
+         */
         vector<Node> nodes;
+
+        /**
+         * Function that returns the distance between two points with coordinates passed by parameter
+         * Time Complexity: O(1)
+         * @param lat1 a double value represents the latitude of first point
+         * @param lon1 a double value represents the longitude of first point
+         * @param lat2 a double value represents the latitude of second point
+         * @param lon2 a double value represents the longitude of second point
+         * @return a double value containing the distance between two points
+         */
         double computeDistance(double lat1, double lon1, double lat2, double lon2);
+
+        /**
+         * Function that eliminates all foot itineraries in current graph
+         * Time Complexity: O(E.V), which V is the number of nodes and E is the number of edges
+         */
         void deleteFootItineraries();
 
     public:
 
+        /**
+         * Main constructor of the class Graph
+         * @param nodes integer number that represents the number of nodes that graph must have
+         */
         explicit Graph(int nodes);
+
+        /**
+         * Function that clears all Nodes
+         * Time Complexity: O(V), which V is the number of nodes
+         */
         void clear();
+
+        /**
+         * Function that adds a new Node to the graph
+         * Time Complexity: O(1)
+         * @param node Node struct that contains all characteristics of the stop
+         * @param index an integer value that represents the Stop index in vector
+         */
         void addNode(const Node &node, int index);
+
+        /**
+         * Function that returns one Stop, based on his index
+         * Time Complexity: O(1)
+         * @param index an integer value that represents the Stop index in vector
+         * @return Node, representing the intended stop
+         */
         Node getNode(int index);
+
+        /**
+         * Function that returns one Stop, based on his coordinate
+         * Time Complexity: O(V), which V is the number of Nodes
+         * @param coordinate a Coordinate struct that represents the Stop coordinate
+         * @return Node, representing the stop closest to the given coordinate
+         */
         Node getNode(const Coordinate &coordinate);
+
+        /**
+         * Function that adds an Edge between two nodes
+         * Time Complexity: O(1)
+         * @param origin a integer value representing the current
+         * @param destiny
+         * @param name 
+         */
         void addEdge(int origin, int destiny, const string &name);
         void createFootItineraries(double distance);
         void BFS(int origin);

@@ -83,7 +83,7 @@ void Menu::routeTypeMenu() {
 }
 
 void Menu::searchDefinitionsMenu() {
-    bool insert;
+    bool insert; string name;
     do {
         cout << "=============Definições de Procura=============" << endl;
         cout << "===============================================" << endl;
@@ -104,8 +104,49 @@ void Menu::searchDefinitionsMenu() {
 
     switch (optionType) {
         do {
+            case 1: {
 
-        } while ()
+                cout << "Insira o nome da paragem" << endl;
+                cin >> name;
+                stcp.disableStop(name);
+                cout << "Deseja desativar outra paragem? (S - Sim, N - Nao)" << endl;
+                cin >> name;
+                if(name != "S" || name != "s") insert = false;
+            } break;
+
+            case 2: {
+                cout << "Insira o nome da linha" << endl;
+                cin >> name;
+                stcp.disableLine(name);
+                cout << "Deseja desativar outra linha? (S - Sim, N - Nao)" << endl;
+                cin >> name;
+                if(name != "S" || name != "s") insert = false;
+            } break;
+
+            case 3: {
+                cout << "Insira o nome da zona" << endl;
+                cin >> name;
+                stcp.disableZone(name);
+                cout << "Deseja desativar outra zona? (S - Sim, N - Nao)" << endl;
+                cin >> name;
+                if(name != "S" || name != "s") insert = false;
+            } break;
+
+            case 4: {
+                double distance;
+                cout << "Quer desativar a partir de uma paragem ou coordenada? (P - Paragem, C - Coordenada)" << endl;
+                cin >> name;
+                if(name == "P" || name == "p") {
+                    cout << "Insira o nome da paragem" << endl;
+                    cin >> name;
+                    cout << "Qual a quantidade de metros limite para desativar?" << endl;
+                    cin >> distance;
+                    stcp.disableArea(name, distance);
+                } else if(name == "C" || name == "c") {
+                    double latitude, longitude;
+                }
+            }
+        } while (insert);
     }
     getMenu();
 }
