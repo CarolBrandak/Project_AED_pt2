@@ -156,7 +156,7 @@ class Graph {
 
         /**
          * Function that eliminates all foot itineraries in current graph
-         * Time Complexity: O(E.V), which V is the number of nodes and E is the number of edges
+         * Time Complexity: O(E + V), which V is the number of nodes and E is the number of edges
          */
         void deleteFootItineraries();
 
@@ -183,6 +183,7 @@ class Graph {
         void addNode(const Node &node, int index);
 
         /**
+         * @Overload
          * Function that returns one Stop, based on his index
          * Time Complexity: O(1)
          * @param index an integer value that represents the Stop index in vector
@@ -191,6 +192,7 @@ class Graph {
         Node getNode(int index);
 
         /**
+         * @Overload
          * Function that returns one Stop, based on his coordinate
          * Time Complexity: O(V), which V is the number of Nodes
          * @param coordinate a Coordinate struct that represents the Stop coordinate
@@ -201,21 +203,90 @@ class Graph {
         /**
          * Function that adds an Edge between two nodes
          * Time Complexity: O(1)
-         * @param origin a integer value representing the current
-         * @param destiny
-         * @param name 
+         * @param origin a integer value representing the index of origin Node
+         * @param destiny a integer value representing the index of destiny Node
+         * @param name a string containing the lines name
          */
         void addEdge(int origin, int destiny, const string &name);
+
+        /**
+         * Function that adds more Edges between nodes, based on theirs distance
+         * Time Complexity: O(V^2), which V is the number of Nodes
+         * @param distance a double value containing the maximum distance that new Edge may have
+         */
         void createFootItineraries(double distance);
+
+        /**
+         * Breadth-first search to determinate the distance, in nodes, between two stops
+         * Time Complexity: O(V + E), which V is the number of Nodes and E is the number of edges
+         * @param origin index of origin stop
+         */
         void BFS(int origin);
+
+        /**
+         * Dijkstra Algorithm, based on distance between nodes
+         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and E is the number of edges
+         * @param origin index of origin stop
+         */
         void dijkstraMeters(int origin);
+
+        /**
+         * Dijkstra Algorithm, based on number of distinct lines
+         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and E is the number of edges
+         * @param origin index of origin stop
+         */
         void dijkstraLines(int origin);
+
+        /**
+         * Dijkstra Algorithm, based on number of distinct zones
+         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and E is the number of edges
+         * @param origin index of origin stop
+         */
         void dijkstraZones(int origin);
+
+        /**
+         * Function that returns a path based on users input
+         * Time Complexity: O(V), which V is the number of Nodes
+         * @param origin index of origin stop
+         * @param destination index of destination stop
+         * @param type an integer value containing the searching type, based on users input
+         * @return a list of Node structs that containing all path between origin and destination nodes
+         */
         list<Node> dijkstraPath(int origin, int destination, int type);
+
+        /**
+         * Function that disable a Stop
+         * Time Complexity: O(1)
+         * @param stop an integer value containing the index of Stop
+         */
         void disableStop(int stop);
+
+        /**
+         * Function that disables all Nodes in selected line
+         * Time Complexity: O(V + E), which V is the number of Nodes and E is the number of edges
+         * @param line a string passed by reference containing the line name
+         */
         void disableLine(const string &line);
+
+        /**
+         * Function that disables all Nodes in selected area, based on stop and his radius
+         * Time Complexity: O(V), which V is the number of Nodes
+         * @param stop an integer value containing the index of selected stop
+         * @param distance a double value containing the radius of the area
+         */
         void disableArea(int stop, double distance);
+
+        /**
+         * Function that disables all nodes in selected Zone
+         * Time Complexity: O(V), which V is the number of Nodes
+         * @param zone a string containing the name of selected zone
+         */
         void disableZone(const string &zone);
+
+        /**
+         * Function that activates all nodes in current Graph
+         * Time Complexity: O(V), which V is the number of Nodes
+         */
         void activateAllStops();
 };
 
