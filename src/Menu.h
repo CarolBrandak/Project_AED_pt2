@@ -10,7 +10,7 @@
 #define COORD_TYPE_MENU 2
 #define COORDINATE_MENU 3
 #define STOP_MENU 4
-#define FOOT_MENU 5
+#define DISABLE_MENU 5
 
 class Menu {
 
@@ -59,6 +59,8 @@ public:
     void coordTypeMenu();
 
     void coordInputMenu();
+
+    void disableLocationMenu();
 
     void stopInputMenu();
 

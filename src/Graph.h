@@ -12,6 +12,9 @@
 #include <queue>
 using namespace std;
 
+/**
+ * 
+ */
 struct Coordinate {
     double latitude;
     double longitude;

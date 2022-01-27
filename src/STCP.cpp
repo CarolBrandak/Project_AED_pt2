@@ -140,20 +140,20 @@ void STCP::showPath(const string &name1, const string &name2, int type) {
 
         switch (type) {
             case 1:
-                cout << "Ira passa por " << nodes.size() << " paragens antes de chegar ao seu destino. Itinerario: " << endl;
-                for (const Node &node : nodes) {
-                    cout << node.name << endl;
-                }
+                cout << "Ira passar por " << nodes.size() << " paragens antes de chegar ao seu destino. Itinerario: " << endl;
                 break;
             case 2:
-                cout << "Depois fazer Metros" << endl;
+                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.back().customWeight.meters << " metros antes de chegar ao seu destino. Itinerario: " << endl;
                 break;
             case 3:
-                cout << "Depois fazer Lines" << endl;
+                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.back().customWeight.numberOfLines << " linhas antes de chegar ao seu destino. Itinerario: " << endl;
                 break;
             case 4:
-                cout << "Depois fazer Zones" << endl;
+                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.back().customWeight.numberOfZones << " zonas antes de chegar ao seu destino. Itinerario: " << endl;
                 break;
+        }
+        for (const Node &node : nodes) {
+            cout << node.name << endl;
         }
     }
 }

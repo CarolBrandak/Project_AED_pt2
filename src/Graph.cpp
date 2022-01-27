@@ -45,10 +45,11 @@ void Graph::BFS(int origin) {
     for (int i = 1 ; i < nodes.size() ; i++) {
         nodes[i].visited = false;
         nodes[i].distance = 0;
+        nodes[i].parent = i;
     }
 
     if (!nodes[origin].available) {
-        cout << "A origem não está disponível" << endl;
+        cout << "A origem nao esta disponivel" << endl;
         return;
     }
 
@@ -70,6 +71,7 @@ void Graph::BFS(int origin) {
                     visitedNodes.push(n);
                     nodes[n].visited = true;
                     nodes[n].distance = nodes[node].distance + 1;
+                    nodes[n].parent = node;
                 }
             }
         }
@@ -218,7 +220,7 @@ list<Node> Graph::dijkstraPath(int origin, int destination, int type) {
     list<Node> path = {};
 
     if (!nodes[origin].available || !nodes[destination].available) {
-        cout << "Origem/Destino não disponivel" << endl;
+        cout << "Origem/Destino nao disponivel" << endl;
         return path;
     }
 
@@ -267,7 +269,6 @@ Node Graph::getNode(const Coordinate &coordinate) {
                                                 coordinate.latitude, coordinate.longitude);
         if (distance > attempDistance) {
             result = nodes[i];
-            cout << "Trocou para o no: " << result.name << endl;
             distance = attempDistance;
         }
     }
