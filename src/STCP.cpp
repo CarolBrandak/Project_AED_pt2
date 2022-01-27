@@ -128,7 +128,6 @@ void STCP::showPath(const string &name1, const string &name2, int type) {
 
     auto it1 = stops.find(name1);
     auto it2 = stops.find(name2);
-    cout << "Name 1 " << name1 << " and name2 " << name2 << endl;
 
     if (it1 == stops.end() || it2 == stops.end()) {
         cout << "Paragem invalida!" << endl;
@@ -139,15 +138,23 @@ void STCP::showPath(const string &name1, const string &name2, int type) {
 
     if (!nodes.empty()) {
 
-        // TODO LATER
-        for (const Node &node : nodes) {
-            cout << "Code: " << node.code << ", zone: " << node.zone <<
-                 " and coordinates: " << node.coordinate.latitude << " " << node.coordinate.longitude << endl;
+        switch (type) {
+            case 1:
+                cout << "Ira passa por " << nodes.size() << " paragens antes de chegar ao seu destino. Itinerario: " << endl;
+                for (const Node &node : nodes) {
+                    cout << node.name << endl;
+                }
+                break;
+            case 2:
+                cout << "Depois fazer Metros" << endl;
+                break;
+            case 3:
+                cout << "Depois fazer Lines" << endl;
+                break;
+            case 4:
+                cout << "Depois fazer Zones" << endl;
+                break;
         }
-
-        cout << "Distancia total percorrida: " << graph.getNode(stops[name2]).customWeight.meters << " metros, "
-             << graph.getNode(stops[name2]).customWeight.numberOfZones << " zonas e " << graph.getNode(stops[name2]).customWeight.numberOfLines << " lines." << endl;
-
     }
 }
 

@@ -44,23 +44,33 @@ void Graph::BFS(int origin) {
 
     for (int i = 1 ; i < nodes.size() ; i++) {
         nodes[i].visited = false;
+        nodes[i].distance = 0;
+    }
+
+    if (!nodes[origin].available) {
+        cout << "A origem não está disponível" << endl;
+        return;
     }
 
     queue<int> visitedNodes = {};
     visitedNodes.push(origin);
     nodes[origin].visited = true;
+    nodes[origin].distance = 0;
 
     while (!visitedNodes.empty()) {
 
         int node = visitedNodes.front();
         visitedNodes.pop();
 
-        for (const Edge &edge : nodes[node].adjacent) {
+        if (nodes[node].available) {
+            for (const Edge &edge : nodes[node].adjacent) {
 
-            int n = edge.dest;
-            if (!nodes[n].visited) {
-                visitedNodes.push(n);
-                nodes[n].visited = true;
+                int n = edge.dest;
+                if (!nodes[n].visited) {
+                    visitedNodes.push(n);
+                    nodes[n].visited = true;
+                    nodes[n].distance = nodes[node].distance + 1;
+                }
             }
         }
     }
@@ -70,7 +80,7 @@ void Graph::dijkstraMeters(int origin) {
 
     set<pair<double, int>> counter;
 
-    for (int i = 1 ; i <= nodes.size() - 1 ; i++) {
+    for (int i = 1 ; i < nodes.size() ; i++) {
         nodes[i].customWeight.meters = INF;
         nodes[i].customWeight.numberOfLines = INF;
         nodes[i].customWeight.numberOfZones = INF;

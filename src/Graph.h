@@ -65,7 +65,6 @@ class Graph {
         void dijkstraLines(int origin);
         void dijkstraZones(int origin);
         list<Node> dijkstraPath(int origin, int destination, int type);
-
         void disableStop(int stop);
         void disableLine(const string &line);
         void disableArea(int stop, double distance);
