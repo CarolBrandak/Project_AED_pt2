@@ -73,51 +73,84 @@ $(function() {
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PROJECT_AED_PT2_STCP_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PROJECT_AED_PT2_STCP_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define numberStops 2487</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#define STOPS &quot;../data/stops.csv&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define LINES &quot;../data/lines.csv&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;map&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;Graph.h&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_s_t_c_p.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="class_s_t_c_p.html">STCP</a> {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <a class="code hl_class" href="class_graph.html">Graph</a> graph;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        map&lt;string, int&gt; stops;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        map&lt;string, string&gt; lines;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordtype">void</span> createStops();</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keywordtype">void</span> createLines();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="keywordtype">void</span> createLine(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;code);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordtype">void</span> addStop(<span class="keyword">const</span> <a class="code hl_struct" href="struct_node.html">Node</a> &amp;node, <span class="keywordtype">int</span> index);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <a class="code hl_class" href="class_s_t_c_p.html">STCP</a>();</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_class" href="class_s_t_c_p.html">~STCP</a>();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <a class="code hl_struct" href="struct_node.html">Node</a> getStop(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;code);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordtype">void</span> createFootItineraries(<span class="keywordtype">double</span> distance);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordtype">void</span> showPath(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name1, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name2, <span class="keywordtype">int</span> type);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordtype">void</span> showPath(<span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;c1, <span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;c2, <span class="keywordtype">int</span> type);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordtype">void</span> showPath(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name1, <span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;c2, <span class="keywordtype">int</span> type);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">void</span> showPath(<span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;c1, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name2, <span class="keywordtype">int</span> type);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">void</span> disableStop(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">void</span> disableLine(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;line);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">void</span> disableArea(<span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;coordinate, <span class="keywordtype">double</span> distance);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordtype">void</span> disableArea(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name, <span class="keywordtype">double</span> distance);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">void</span> disableZone(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;zone);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordtype">void</span> activateAllStops();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif </span><span class="comment">//PROJECT_AED_PT2_STCP_H</span></div>
-<div class="ttc" id="aclass_graph_html"><div class="ttname"><a href="class_graph.html">Graph</a></div><div class="ttdef"><b>Definition:</b> Graph.h:137</div></div>
-<div class="ttc" id="aclass_s_t_c_p_html"><div class="ttname"><a href="class_s_t_c_p.html">STCP</a></div><div class="ttdef"><b>Definition:</b> STCP.h:14</div></div>
-<div class="ttc" id="astruct_coordinate_html"><div class="ttname"><a href="struct_coordinate.html">Coordinate</a></div><div class="ttdef"><b>Definition:</b> Graph.h:18</div></div>
-<div class="ttc" id="astruct_node_html"><div class="ttname"><a href="struct_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> Graph.h:76</div></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;Graph.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define numberStops 2487</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define STOPS &quot;../data/stops.csv&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define LINES &quot;../data/lines.csv&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="class_s_t_c_p.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="class_s_t_c_p.html">STCP</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <a class="code hl_class" href="class_graph.html">Graph</a> graph;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        map&lt;string, int&gt; stops;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        map&lt;string, string&gt; lines;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a7eaa2bd590d405d481a0a1a2de80257c">createStops</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a2334add9454841949c6ee6a45ef795a3">createLines</a>();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a803b4651504bfc23fb6b5a42a7325ed1">createLine</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;code);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a16be9703e1f52aa2a0847133e7fd139e">addStop</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_node.html">Node</a> &amp;node, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_function" href="class_s_t_c_p.html#a4541383180e44e0ce4b8cc0919ad5c41">STCP</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_function" href="class_s_t_c_p.html#a61d21904a7be51aa5ac28f3398202e8b">~STCP</a>();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <a class="code hl_struct" href="struct_node.html">Node</a> <a class="code hl_function" href="class_s_t_c_p.html#a4b23fa05e7715879938c58f41fe237ce">getStop</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;code);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#ac9945170c9dfc163cfbe02bc0a94e36a">createFootItineraries</a>(<span class="keywordtype">double</span> distance);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a92f5f638742eeb0b6cdf56d8e6fd817a">showPath</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name1, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name2, <span class="keywordtype">int</span> type);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a92f5f638742eeb0b6cdf56d8e6fd817a">showPath</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;c1, <span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;c2, <span class="keywordtype">int</span> type);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a92f5f638742eeb0b6cdf56d8e6fd817a">showPath</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name1, <span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;c2, <span class="keywordtype">int</span> type);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a92f5f638742eeb0b6cdf56d8e6fd817a">showPath</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;c1, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name2, <span class="keywordtype">int</span> type);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a9d27b60fed163588624e8b9794bcd20a">disableStop</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a45d30a60d6ba67675b7486b0fd499411">disableLine</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;line);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#ac4bc019e1aa93599141ab9dc6863e48b">disableArea</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_coordinate.html">Coordinate</a> &amp;coordinate, <span class="keywordtype">double</span> distance);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#ac4bc019e1aa93599141ab9dc6863e48b">disableArea</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;name, <span class="keywordtype">double</span> distance);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#af2f448c619d1b4e0aab6820d1cbd902a">disableZone</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;zone);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_s_t_c_p.html#a378898c75d8f2b8af1c5480f7b454175">activateAllStops</a>();</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>};</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#endif </span><span class="comment">//PROJECT_AED_PT2_STCP_H</span></div>
+<div class="ttc" id="aclass_graph_html"><div class="ttname"><a href="class_graph.html">Graph</a></div><div class="ttdef"><b>Definition:</b> Graph.h:140</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html"><div class="ttname"><a href="class_s_t_c_p.html">STCP</a></div><div class="ttdef"><b>Definition:</b> STCP.h:20</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a16be9703e1f52aa2a0847133e7fd139e"><div class="ttname"><a href="class_s_t_c_p.html#a16be9703e1f52aa2a0847133e7fd139e">STCP::addStop</a></div><div class="ttdeci">void addStop(const Node &amp;node, int index)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:15</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a2334add9454841949c6ee6a45ef795a3"><div class="ttname"><a href="class_s_t_c_p.html#a2334add9454841949c6ee6a45ef795a3">STCP::createLines</a></div><div class="ttdeci">void createLines()</div><div class="ttdef"><b>Definition:</b> STCP.cpp:91</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a378898c75d8f2b8af1c5480f7b454175"><div class="ttname"><a href="class_s_t_c_p.html#a378898c75d8f2b8af1c5480f7b454175">STCP::activateAllStops</a></div><div class="ttdeci">void activateAllStops()</div><div class="ttdef"><b>Definition:</b> STCP.cpp:187</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a4541383180e44e0ce4b8cc0919ad5c41"><div class="ttname"><a href="class_s_t_c_p.html#a4541383180e44e0ce4b8cc0919ad5c41">STCP::STCP</a></div><div class="ttdeci">STCP()</div><div class="ttdef"><b>Definition:</b> STCP.cpp:6</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a45d30a60d6ba67675b7486b0fd499411"><div class="ttname"><a href="class_s_t_c_p.html#a45d30a60d6ba67675b7486b0fd499411">STCP::disableLine</a></div><div class="ttdeci">void disableLine(const string &amp;line)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:167</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a4b23fa05e7715879938c58f41fe237ce"><div class="ttname"><a href="class_s_t_c_p.html#a4b23fa05e7715879938c58f41fe237ce">STCP::getStop</a></div><div class="ttdeci">Node getStop(const string &amp;code)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:19</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a61d21904a7be51aa5ac28f3398202e8b"><div class="ttname"><a href="class_s_t_c_p.html#a61d21904a7be51aa5ac28f3398202e8b">STCP::~STCP</a></div><div class="ttdeci">~STCP()</div><div class="ttdef"><b>Definition:</b> STCP.cpp:11</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a7eaa2bd590d405d481a0a1a2de80257c"><div class="ttname"><a href="class_s_t_c_p.html#a7eaa2bd590d405d481a0a1a2de80257c">STCP::createStops</a></div><div class="ttdeci">void createStops()</div><div class="ttdef"><b>Definition:</b> STCP.cpp:27</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a803b4651504bfc23fb6b5a42a7325ed1"><div class="ttname"><a href="class_s_t_c_p.html#a803b4651504bfc23fb6b5a42a7325ed1">STCP::createLine</a></div><div class="ttdeci">void createLine(const string &amp;code)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:61</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a92f5f638742eeb0b6cdf56d8e6fd817a"><div class="ttname"><a href="class_s_t_c_p.html#a92f5f638742eeb0b6cdf56d8e6fd817a">STCP::showPath</a></div><div class="ttdeci">void showPath(const string &amp;name1, const string &amp;name2, int type)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:127</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_a9d27b60fed163588624e8b9794bcd20a"><div class="ttname"><a href="class_s_t_c_p.html#a9d27b60fed163588624e8b9794bcd20a">STCP::disableStop</a></div><div class="ttdeci">void disableStop(const string &amp;name)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:161</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_ac4bc019e1aa93599141ab9dc6863e48b"><div class="ttname"><a href="class_s_t_c_p.html#ac4bc019e1aa93599141ab9dc6863e48b">STCP::disableArea</a></div><div class="ttdeci">void disableArea(const Coordinate &amp;coordinate, double distance)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:173</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_ac9945170c9dfc163cfbe02bc0a94e36a"><div class="ttname"><a href="class_s_t_c_p.html#ac9945170c9dfc163cfbe02bc0a94e36a">STCP::createFootItineraries</a></div><div class="ttdeci">void createFootItineraries(double distance)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:23</div></div>
+<div class="ttc" id="aclass_s_t_c_p_html_af2f448c619d1b4e0aab6820d1cbd902a"><div class="ttname"><a href="class_s_t_c_p.html#af2f448c619d1b4e0aab6820d1cbd902a">STCP::disableZone</a></div><div class="ttdeci">void disableZone(const string &amp;zone)</div><div class="ttdef"><b>Definition:</b> STCP.cpp:183</div></div>
+<div class="ttc" id="astruct_coordinate_html"><div class="ttname"><a href="struct_coordinate.html">Coordinate</a></div><div class="ttdef"><b>Definition:</b> Graph.h:21</div></div>
+<div class="ttc" id="astruct_node_html"><div class="ttname"><a href="struct_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> Graph.h:79</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

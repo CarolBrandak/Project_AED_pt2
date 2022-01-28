@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['routetypemenu_0',['routeTypeMenu',['../class_menu.html#a53564d64b4d26c133f2f0bd7a0f120a8',1,'Menu']]]
+  ['mainmenu_0',['mainMenu',['../class_menu.html#aef9edee86d2ea460606361c92e061583',1,'Menu']]],
+  ['menu_1',['Menu',['../class_menu.html#ad466dd83355124a6ed958430450bfe94',1,'Menu']]]
 ];
