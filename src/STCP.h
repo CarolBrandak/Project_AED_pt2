@@ -27,25 +27,114 @@ class STCP {
         Graph graph;
 
         /**
-         * @var 
+         * @var stops - a map, using string key and int value, to manage all stops
          */
         map<string, int> stops;
+
+        /**
+         * @var lines - a map, using string key and string value, to manage all lines
+         */
         map<string, string> lines;
+
+        /**
+         * Function that reads and creates all stops
+         * Time Complexity: O(S), which S is the number of lines in the file = number of stops to create
+         */
         void createStops();
+
+        /**
+         * Function that reads and creates all lines
+         * Time Complexity: O(L.S), which L is the number of lines in the file = number of Lines to create and S
+         * is the number of Stops to the certain Line
+         */
         void createLines();
+
+        /**
+         * Function that reads and create a line
+         * Time Complexity: O(S), which S is the number of Stops in the given line
+         * @param code - a string representing the code of certain line
+         */
         void createLine(const string &code);
+
+        /**
+         * Function that adds a new Node to the graph
+         * Time Complexity: O(1)
+         * @param node - Node struct that contains all characteristics of the stop
+         * @param index - an integer value that represents the Stop index in vector
+         */
         void addStop(const Node &node, int index);
 
     public:
 
+        /**
+         * A default constructor of class
+         */
         STCP();
+
+        /**
+         * A default destructor of class
+         */
         ~STCP();
+
+        /**
+         * Function that returns a Stop, based on his code
+         * Time Complexity: O(1)
+         * @param code - a string containing the code of certain Stop
+         * @return a Node struct representing the Stop
+         */
         Node getStop(const string &code);
+
+        /**
+         * Function that creates foot itineraries, based on distance passed by value
+         * Time Complexity: O(V^2), which V is the number of Nodes
+         * @param distance - a double which determines maximum length of certain walk
+         */
         void createFootItineraries(double distance);
+
+        /**
+         * @Overload
+         * Function that prints all path based on users input
+         * Time Complexity: O(V), which V is the number of Nodes
+         * @param name1 - a string containing the name of certain origin stop
+         * @param name2 - a string containing the name of certain destination stop
+         * @param type - an integer value representing the user choice
+         */
         void showPath(const string &name1, const string &name2, int type);
+
+        /**
+         * @Overload
+         * Function that prints all path based on users input
+         * Time Complexity: O(V), which V is the number of Nodes
+         * @param c1 - a Coordinate struct containing the coordinate of certain origin stop
+         * @param c2 - a Coordinate struct containing the coordinate of certain destination stop
+         * @param type - an integer value representing the user choice
+         */
         void showPath(const Coordinate &c1, const Coordinate &c2, int type);
+
+        /**
+         * @Overload
+         * Function that prints all path based on users input
+         * Time Complexity: O(V), which V is the number of Nodes
+         * @param name1 - a string containing the name of certain origin stop
+         * @param c2 - a Coordinate struct containing the coordinate of certain destination stop
+         * @param type - an integer value representing the user choice
+         */
         void showPath(const string &name1, const Coordinate &c2, int type);
+
+        /**
+         * @Overload
+         * Function that prints all path based on users input
+         * Time Complexity: O(V), which V is the number of Nodes
+         * @param c1 - a Coordinate struct containing the coordinate of certain origin stop
+         * @param name2 - a string containing the name of certain destination stop
+         * @param type - an integer value representing the user choice
+         */
         void showPath(const Coordinate &c1, const string &name2, int type);
+
+        /**
+         * Function 
+         * @param name
+         */
         void disableStop(const string &name);
         void disableLine(const string &line);
         void disableArea(const Coordinate &coordinate, double distance);
