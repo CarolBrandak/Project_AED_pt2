@@ -26,7 +26,7 @@ class Menu {
          * @var option - user main menu option
          */
         int option;
-        
+
         /**
          * @var optionType - users type route option
          */

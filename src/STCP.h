@@ -1,21 +1,34 @@
 #ifndef PROJECT_AED_PT2_STCP_H
 #define PROJECT_AED_PT2_STCP_H
 
-#define numberStops 2487
-#define STOPS "../data/stops.csv"
-#define LINES "../data/lines.csv"
-
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <map>
 #include "Graph.h"
 
+/**
+ * Definition of number of stops and some file paths that are useful for the class below
+ */
+#define numberStops 2487
+#define STOPS "../data/stops.csv"
+#define LINES "../data/lines.csv"
+
+/**
+ * Class to manage a public transport company and his data
+ */
 class STCP {
 
     private:
 
+        /**
+         * @var graph - a Graph class containing all data
+         */
         Graph graph;
+
+        /**
+         * @var 
+         */
         map<string, int> stops;
         map<string, string> lines;
         void createStops();
