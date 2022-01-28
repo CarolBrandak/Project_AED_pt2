@@ -132,14 +132,48 @@ class STCP {
         void showPath(const Coordinate &c1, const string &name2, int type);
 
         /**
-         * Function 
-         * @param name
+         * Function that disable a Stop
+         * Time Complexity: O(1)
+         * @param name - a string containing the Stops name
          */
         void disableStop(const string &name);
+
+        /**
+         * Function that disables all Nodes in selected line
+         * Time Complexity: O(V + E), which V is the number of Nodes and E is the number of edges
+         * @param line - a string passed by reference containing the line name
+         */
         void disableLine(const string &line);
+
+        /**
+        * @Overload
+        * Function that disables all Nodes in selected area, based on coordinate and his radius
+        * Time Complexity: O(V), which V is the number of Nodes
+        * @param coordinate - a Coordinate struct containing the coordinate of selected area
+        * @param distance - a double value containing the radius of the area
+        */
         void disableArea(const Coordinate &coordinate, double distance);
+
+        /**
+        * @Overload
+        * Function that disables all Nodes in selected area, based on name and his radius
+        * Time Complexity: O(V), which V is the number of Nodes
+        * @param name - a string containing the stops name
+        * @param distance - a double value containing the radius of the area
+        */
         void disableArea(const string &name, double distance);
+
+        /**
+        * Function that disables all nodes in selected Zone
+        * Time Complexity: O(V), which V is the number of Nodes
+        * @param zone - a string containing the name of selected zone
+        */
         void disableZone(const string &zone);
+
+        /**
+         * Function that activates all nodes in current Graph
+         * Time Complexity: O(V), which V is the number of Nodes
+         */
         void activateAllStops();
 };
 

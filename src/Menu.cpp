@@ -150,7 +150,6 @@ void Menu::searchDefinitionsMenu() {
     }
     getMenu();
 }
-}
 
 void Menu::coordTypeMenu() {
 
