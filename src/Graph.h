@@ -1,8 +1,6 @@
 #ifndef PROJECT_AED_PT2_GRAPH_H
 #define PROJECT_AED_PT2_GRAPH_H
 
-#define INF (INT_MAX/2)
-
 #include <list>
 #include <vector>
 #include <string>
@@ -11,6 +9,11 @@
 #include <set>
 #include <queue>
 using namespace std;
+
+/**
+ * Definition of the largest number used in class bellow
+ */
+#define INF (INT_MAX/2)
 
 /**
  * Struct that groups the two dimensions of the coordinate (latitude and longitude)
@@ -225,21 +228,24 @@ class Graph {
 
         /**
          * Dijkstra Algorithm, based on distance between nodes
-         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and E is the number of edges
+         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and
+         * E is the number of edges
          * @param origin index of origin stop
          */
         void dijkstraMeters(int origin);
 
         /**
          * Dijkstra Algorithm, based on number of distinct lines
-         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and E is the number of edges
+         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and
+         * E is the number of edges
          * @param origin index of origin stop
          */
         void dijkstraLines(int origin);
 
         /**
          * Dijkstra Algorithm, based on number of distinct zones
-         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and E is the number of edges
+         * Time Complexity: O(V + V.log(V) + E.log(V)) -> O(E.log(V)), which V is the number of Nodes and
+         * E is the number of edges
          * @param origin index of origin stop
          */
         void dijkstraZones(int origin);
