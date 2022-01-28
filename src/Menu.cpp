@@ -20,7 +20,7 @@ void Menu::getMenu() {
             case 2: coordTypeMenu(); break;
             case 3: coordInputMenu(); break;
             case 4: stopInputMenu(); break;
-            case 5: footInputMenu(); break;
+            case 5: searchDefinitionsMenu(); break;
         }
     } else exit(0);
 }
@@ -31,22 +31,25 @@ void Menu::mainMenu() {
         cout << "=================STCP==================" << endl;
         cout << "=======================================" << endl;
         cout << "1 - Encontrar rota" << endl;
-        cout << "2 - Sair" << endl;
+        cout << "2 - Definicoes de procura" << endl;
+        cout << "3 - Sair" << endl;
         cout << "Escolha: ";
         cin >> option;
         cout << "=======================================" << endl;
-        if (option < 1 || option > 2) cout << "Erro, por favor tente novamente!" << endl;
+        if (option < 1 || option > 3) cout << "Erro, por favor tente novamente!" << endl;
         cin.clear();
         cin.ignore(1000, '\n');
 
-    } while (option < 1 || option > 2);
+    } while (option < 1 || option > 3);
 
     switch (option) {
         case 1:
             menuState.push(ROUTE_TYPE_MENU);
             break;
         case 2:
-        default:
+            menuState.push(SEARCH_DEFINITIONS_MENU);
+            break;
+        case 3: default:
             menuState.pop();
             break;
     }
@@ -83,14 +86,13 @@ void Menu::routeTypeMenu() {
 }
 
 void Menu::searchDefinitionsMenu() {
-    bool insert; string name;
     do {
-        cout << "=============Definições de Procura=============" << endl;
+        cout << "=============Definicoes de Procura=============" << endl;
         cout << "===============================================" << endl;
         cout << "1 - Desativar 1 ou mais paragens" << endl;
         cout << "2 - Desativar 1 ou mais linhas" << endl;
         cout << "3 - Desativar 1 ou mais zonas" << endl;
-        cout << "4 - Desativar uma área especifica" << endl;
+        cout << "4 - Desativar uma area especifica" << endl;
         cout << "5 - Ativar todas paragens" << endl;
         cout << "6 - Voltar ao menu anterior" << endl;
         cout << "Escolha: ";
@@ -102,51 +104,13 @@ void Menu::searchDefinitionsMenu() {
 
     } while (option < 1 || option > 6);
 
-    switch (optionType) {
-        do {
-            case 1: {
-
-                cout << "Insira o nome da paragem" << endl;
-                cin >> name;
-                stcp.disableStop(name);
-                cout << "Deseja desativar outra paragem? (S - Sim, N - Nao)" << endl;
-                cin >> name;
-                if(name != "S" || name != "s") insert = false;
-            } break;
-
-            case 2: {
-                cout << "Insira o nome da linha" << endl;
-                cin >> name;
-                stcp.disableLine(name);
-                cout << "Deseja desativar outra linha? (S - Sim, N - Nao)" << endl;
-                cin >> name;
-                if(name != "S" || name != "s") insert = false;
-            } break;
-
-            case 3: {
-                cout << "Insira o nome da zona" << endl;
-                cin >> name;
-                stcp.disableZone(name);
-                cout << "Deseja desativar outra zona? (S - Sim, N - Nao)" << endl;
-                cin >> name;
-                if(name != "S" || name != "s") insert = false;
-            } break;
-
-            case 4: {
-                double distance;
-                cout << "Quer desativar a partir de uma paragem ou coordenada? (P - Paragem, C - Coordenada)" << endl;
-                cin >> name;
-                if(name == "P" || name == "p") {
-                    cout << "Insira o nome da paragem" << endl;
-                    cin >> name;
-                    cout << "Qual a quantidade de metros limite para desativar?" << endl;
-                    cin >> distance;
-                    stcp.disableArea(name, distance);
-                } else if(name == "C" || name == "c") {
-                    double latitude, longitude;
-                }
-            }
-        } while (insert);
+    switch (option) {
+            case 1: disableBusStopMenu(); break;
+            case 2: disableBusLineMenu(); break;
+            case 3: disableZoneMenu(); break;
+            case 4: disableAreaMenu(); break;
+            case 5: stcp.activateAllStops(); cout << "Todas as paragens foram ativadas!" << endl; break;
+            case 6: menuState.pop(); break;
     }
     getMenu();
 }
@@ -215,6 +179,73 @@ void Menu::stopInputMenu() {
     stcp.showPath(departureStop,arrivalStop,optionType);
     menuState.pop();
     menuState.pop();
+    getMenu();
+}
+
+void Menu::disableBusStopMenu() {
+    bool insert = false; string name;
+    while (!insert) {
+        cout << "Insira o nome da paragem" << endl;
+        cin >> name;
+        stcp.disableStop(name);
+        cout << "Deseja desativar outra paragem? (S - Sim, N - Nao)" << endl;
+        cin >> name;
+        if (name == "N" || name == "n") insert = true;
+    }
+}
+
+void Menu::disableBusLineMenu() {
+    bool insert = false; string name;
+    while (!insert) {
+        cout << "Insira o nome da linha" << endl;
+        cin >> name;
+        stcp.disableLine(name);
+        cout << "Deseja desativar outra linha? (S - Sim, N - Nao)" << endl;
+        cin >> name;
+        if (name == "N" || name == "n") insert = true;
+    }
+}
+
+void Menu::disableZoneMenu() {
+    bool insert = false; string name;
+    while (!insert) {
+        cout << "Insira o nome da zona" << endl;
+        cin >> name;
+        stcp.disableZone(name);
+        cout << "Deseja desativar outra zona? (S - Sim, N - Nao)" << endl;
+        cin >> name;
+        if (name == "N" || name == "n") insert = true;
+    }
+}
+
+void Menu::disableAreaMenu() {
+    double distance; string name,stop;
+    bool pass = false;
+    do {
+        cout << "Quer desativar a partir de uma paragem ou coordenada? (P - Paragem, C - Coordenada)"
+             << endl;
+        cin >> name;
+        if (name == "P" || name == "p") {
+            cout << "Insira o nome da paragem" << endl;
+            cin >> stop;
+            cout << "Qual a quantidade de metros limite para desativar?" << endl;
+            cin >> distance;
+            stcp.disableArea(stop, distance);
+            pass = true;
+        } else if (name == "C" || name == "c") {
+            double latitude, longitude;
+            cout << "Insira as coordenadas de onde quer partir" << endl;
+            cout << "Coordenada Norte: ";
+            cin >> latitude;
+            cout << "\nCoordenada Oeste: ";
+            cin >> longitude;
+            cout << "Qual a quantidade de metros limite para desativar?" << endl;
+            cin >> distance;
+            Coordinate coordinate = {latitude, longitude};
+            stcp.disableArea(coordinate, distance);
+            pass = true;
+        }
+    } while (!pass);
     getMenu();
 }
 

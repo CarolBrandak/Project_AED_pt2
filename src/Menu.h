@@ -13,7 +13,7 @@
 #define COORD_TYPE_MENU 2
 #define COORDINATE_MENU 3
 #define STOP_MENU 4
-#define DISABLE_MENU 5
+#define SEARCH_DEFINITIONS_MENU 5
 
 /**
  * Class to manage interface application
@@ -46,6 +46,27 @@ class Menu {
          * Function that calls the top of the menuState stack
          */
         void getMenu();
+
+        /**
+         * Menu that allows user to disable a zone from search
+         */
+        void disableZoneMenu();
+
+        /**
+         * Menu that allows user to disable a bus stop from search
+         */
+        void disableBusStopMenu();
+
+        /**
+         * Menu that allows user to disable a bus line from search
+         */
+        void disableBusLineMenu();
+
+        /**
+         * Menu that allows user to disable área from a specific stop
+         * or coordinate until a specific radius of meters
+         */
+        void disableAreaMenu();
 
     public:
 
