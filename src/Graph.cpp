@@ -36,10 +36,6 @@ void Graph::addEdge(int origin, int destiny, const string &name) {
                                                                    nodes[destiny].coordinate.longitude), name});
 }
 
-Node Graph::getNode(int index) {
-    return this->nodes[index];
-}
-
 void Graph::BFS(int origin) {
 
     for (int i = 1 ; i < nodes.size() ; i++) {

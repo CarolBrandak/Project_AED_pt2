@@ -187,15 +187,6 @@ class Graph {
 
         /**
          * @Overload
-         * Function that returns one Stop, based on his index
-         * Time Complexity: O(1)
-         * @param index - an integer value that represents the Stop index in vector
-         * @return a Node struct, representing the intended stop
-         */
-        Node getNode(int index);
-
-        /**
-         * @Overload
          * Function that returns one Stop, based on his coordinate
          * Time Complexity: O(V), which V is the number of Nodes
          * @param coordinate - a Coordinate struct that represents the Stop coordinate
