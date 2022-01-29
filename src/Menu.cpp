@@ -171,9 +171,9 @@ void Menu::coordInputMenu() {
 
 void Menu::stopInputMenu() {
     string departureStop, arrivalStop;
-    cout << "Insira o nome da paragem de onde quer partir: ";
+    cout << "Insira o codigo da paragem de onde quer partir: ";
     cin >> departureStop;
-    cout << "Insira o nome da paragem destino: ";
+    cout << "Insira o codigo da paragem destino: ";
     cin >> arrivalStop;
     stcp.createFootItineraries(footInputMenu());
     stcp.showPath(departureStop,arrivalStop,optionType);
@@ -185,7 +185,7 @@ void Menu::stopInputMenu() {
 void Menu::disableBusStopMenu() {
     bool insert = false; string name;
     while (!insert) {
-        cout << "Insira o nome da paragem:" << endl;
+        cout << "Insira o codigo da paragem:" << endl;
         cin >> name;
         stcp.disableStop(name);
         cout << "Deseja desativar outra paragem? (S - Sim, N - Nao):" << endl;
@@ -197,7 +197,7 @@ void Menu::disableBusStopMenu() {
 void Menu::disableBusLineMenu() {
     bool insert = false; string name;
     while (!insert) {
-        cout << "Insira o nome da linha:" << endl;
+        cout << "Insira o código da linha:" << endl;
         cin >> name;
         stcp.disableLine(name);
         cout << "Deseja desativar outra linha? (S - Sim, N - Nao):" << endl;
@@ -209,7 +209,7 @@ void Menu::disableBusLineMenu() {
 void Menu::disableZoneMenu() {
     bool insert = false; string name;
     while (!insert) {
-        cout << "Insira o nome da zona:" << endl;
+        cout << "Insira o codigo da zona:" << endl;
         cin >> name;
         stcp.disableZone(name);
         cout << "Deseja desativar outra zona? (S - Sim, N - Nao):" << endl;
@@ -225,7 +225,7 @@ void Menu::disableAreaMenu() {
         cout << "Quer desativar a partir de uma paragem ou coordenada? (P - Paragem, C - Coordenada):" << endl;
         cin >> name;
         if (name == "P" || name == "p") {
-            cout << "Insira o nome da paragem: " << endl;
+            cout << "Insira o codigo da paragem: " << endl;
             cin >> stop;
             cout << "Qual a quantidade de metros limite para desativar? " << endl;
             cin >> distance;

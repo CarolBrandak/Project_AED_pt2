@@ -47,6 +47,7 @@ void Graph::BFS(int origin) {
         nodes[i].distance = 0;
         nodes[i].parent = i;
         nodes[i].currentLine = " ";
+        nodes[i].customWeight.meters = 0;
     }
 
     if (!nodes[origin].available) {
@@ -69,12 +70,15 @@ void Graph::BFS(int origin) {
             for (const Edge &edge : nodes[node].adjacent) {
 
                 int n = edge.dest;
+                double w = edge.weight;
+
                 if (!nodes[n].visited) {
                     visitedNodes.push(n);
                     nodes[n].visited = true;
                     nodes[n].distance = nodes[node].distance + 1;
                     nodes[n].parent = node;
                     nodes[n].currentLine = edge.name;
+                    nodes[n].customWeight.meters = nodes[node].customWeight.meters + w;
                 }
             }
         }

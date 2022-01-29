@@ -16,10 +16,6 @@ void STCP::addStop(const Node &node, int index) {
     graph.addNode(node, index);
 }
 
-Node STCP::getStop(const string &code) {
-    return graph.getNode(stops[code]);
-}
-
 void STCP::createFootItineraries(double distance) {
     graph.createFootItineraries(distance);
 }
@@ -116,14 +112,6 @@ void STCP::showPath(const Coordinate &c1, const Coordinate &c2, int type) {
     showPath(graph.getNode(c1).code, graph.getNode(c2).code, type);
 }
 
-void STCP::showPath(const string &name1, const Coordinate &c2, int type) {
-    showPath(name1, graph.getNode(c2).code, type);
-}
-
-void STCP::showPath(const Coordinate &c1, const string &name2, int type) {
-    showPath(graph.getNode(c1).code, name2, type);
-}
-
 void STCP::showPath(const string &name1, const string &name2, int type) {
 
     auto it1 = stops.find(name1);
@@ -153,33 +141,15 @@ void STCP::showPath(const string &name1, const string &name2, int type) {
                 break;
         }
 
-        string lastCode = nodes[nodes.size()-1].code;
-        string lastLine = nodes[nodes.size()-1].currentLine;
         double lastDistance = 0;
-
-        /*
-        for (size_t i = nodes.size() - 1 ; i > 0 ; i--) {
-            cout << nodes[i].code << " --> " << nodes[i].currentLine << endl;
+        cout << "Paragem " << nodes[nodes.size()-1].code << " (" << nodes[nodes.size()-1].name << "), zona " << nodes[nodes.size()-1].zone << endl;
+        for (size_t i = nodes.size() - 2 ; i != 0 ; i--) {
+            string line = nodes[i].currentLine == "Foot" ? " metros a pé" : " metros na linha " + nodes[i].currentLine;
+            cout << "Paragem " << nodes[i].code << " (" << nodes[i].name << "), zona " << nodes[i].zone << " percorrendo " <<
+                nodes[i].customWeight.meters - lastDistance << line << endl;
+            lastDistance = nodes[i].customWeight.meters;
         }
-        cout << nodes[0].code << " --> " << nodes[0].currentLine << endl;
-        */
-
-        cout << "De " << lastCode;
-        for (size_t i = nodes.size() - 1 ; i != 0 ; i--) {
-            if (nodes[i].currentLine == lastLine && nodes[i - 1].currentLine == lastLine) {
-                lastCode = nodes[i].code;
-                if (i-1 == 0) {
-                    cout << " para " << nodes[0].code << " pela linha " << nodes[0].currentLine << endl;
-                    return;
-                }
-            } else if (nodes[i].currentLine == lastLine && nodes[i - 1].currentLine != lastLine) {
-                lastLine = nodes[i - 1].currentLine;
-                lastCode = nodes[i - 1].code;
-                cout << " para " << lastCode << " pela linha " << lastLine << endl;
-                lastLine = nodes[i - 2].currentLine;
-                cout << "De " << lastCode;
-            } else continue;
-        }
+        cout << endl;
     }
 }
 

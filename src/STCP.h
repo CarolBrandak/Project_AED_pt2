@@ -77,14 +77,6 @@ class STCP {
         ~STCP();
 
         /**
-         * Function that returns a Stop, based on his code
-         * Time Complexity: O(1)
-         * @param code - a string containing the code of certain Stop
-         * @return a Node struct representing the Stop
-         */
-        Node getStop(const string &code);
-
-        /**
          * Function that creates foot itineraries, based on distance passed by value
          * Time Complexity: O(V^2), which V is the number of Nodes
          * @param distance - a double which determines maximum length of certain walk
@@ -110,26 +102,6 @@ class STCP {
          * @param type - an integer value representing the user choice
          */
         void showPath(const Coordinate &c1, const Coordinate &c2, int type);
-
-        /**
-         * @Overload
-         * Function that prints all path based on users input
-         * Time Complexity: O(V), which V is the number of Nodes
-         * @param name1 - a string containing the name of certain origin stop
-         * @param c2 - a Coordinate struct containing the coordinate of certain destination stop
-         * @param type - an integer value representing the user choice
-         */
-        void showPath(const string &name1, const Coordinate &c2, int type);
-
-        /**
-         * @Overload
-         * Function that prints all path based on users input
-         * Time Complexity: O(V), which V is the number of Nodes
-         * @param c1 - a Coordinate struct containing the coordinate of certain origin stop
-         * @param name2 - a string containing the name of certain destination stop
-         * @param type - an integer value representing the user choice
-         */
-        void showPath(const Coordinate &c1, const string &name2, int type);
 
         /**
          * Function that disable a Stop
