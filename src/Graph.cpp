@@ -46,6 +46,7 @@ void Graph::BFS(int origin) {
         nodes[i].visited = false;
         nodes[i].distance = 0;
         nodes[i].parent = i;
+        nodes[i].currentLine = " ";
     }
 
     if (!nodes[origin].available) {
@@ -57,6 +58,7 @@ void Graph::BFS(int origin) {
     visitedNodes.push(origin);
     nodes[origin].visited = true;
     nodes[origin].distance = 0;
+    nodes[origin].currentLine = " ";
 
     while (!visitedNodes.empty()) {
 
@@ -72,6 +74,7 @@ void Graph::BFS(int origin) {
                     nodes[n].visited = true;
                     nodes[n].distance = nodes[node].distance + 1;
                     nodes[n].parent = node;
+                    nodes[n].currentLine = edge.name;
                 }
             }
         }
@@ -94,6 +97,7 @@ void Graph::dijkstraMeters(int origin) {
     nodes[origin].customWeight.meters = 0;
     nodes[origin].customWeight.numberOfZones = 1;
     nodes[origin].parent = origin;
+    nodes[origin].currentLine = " ";
     counter.erase({INF, origin});
     counter.insert({0, origin});
 
@@ -111,6 +115,7 @@ void Graph::dijkstraMeters(int origin) {
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
                 nodes[v].customWeight.numberOfZones = nodes[u].zone == nodes[v].zone ? nodes[u].customWeight.numberOfZones : nodes[u].customWeight.numberOfZones + 1;
                 nodes[v].parent = u;
+                nodes[v].currentLine = edge.name;
                 counter.insert({nodes[v].customWeight.meters, v});
             }
         }
@@ -135,7 +140,7 @@ void Graph::dijkstraLines(int origin) {
     nodes[origin].customWeight.numberOfZones = 1;
     nodes[origin].customWeight.meters = 0;
     nodes[origin].parent = origin;
-    nodes[origin].currentLine = "origin";
+    nodes[origin].currentLine = " ";
     counter.erase({{INF, INF}, origin});
     counter.insert({{0, 0}, origin});
 
@@ -207,6 +212,7 @@ void Graph::dijkstraZones(int origin) {
                 counter.erase({{nodes[v].customWeight.numberOfZones, nodes[v].customWeight.meters}, v});
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
                 nodes[v].parent = u;
+                nodes[v].currentLine = edge.name;
                 nodes[v].customWeight.numberOfZones = nodes[u].zone == nodes[v].zone ?
                         nodes[u].customWeight.numberOfZones : nodes[u].customWeight.numberOfZones + 1;
                 counter.insert(make_pair(make_pair(nodes[v].customWeight.numberOfZones, nodes[v].customWeight.meters), v));
@@ -215,9 +221,9 @@ void Graph::dijkstraZones(int origin) {
     }
 }
 
-list<Node> Graph::dijkstraPath(int origin, int destination, int type) {
+vector<Node> Graph::makePath(int origin, int destination, int type) {
 
-    list<Node> path = {};
+    vector<Node> path = {};
 
     if (!nodes[origin].available || !nodes[destination].available) {
         cout << "Origem/Destino nao disponivel" << endl;
@@ -237,7 +243,7 @@ list<Node> Graph::dijkstraPath(int origin, int destination, int type) {
     path.push_back(nodes[i]);
     while (i != origin) {
         i = nodes[i].parent;
-        path.push_front(nodes[i]);
+        path.push_back(nodes[i]);
     }
     return path;
 }

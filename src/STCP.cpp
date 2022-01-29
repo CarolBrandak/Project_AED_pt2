@@ -134,7 +134,7 @@ void STCP::showPath(const string &name1, const string &name2, int type) {
         return;
     }
 
-    list<Node> nodes = graph.dijkstraPath(stops[name1], stops[name2], type);
+    vector<Node> nodes = graph.makePath(stops[name1], stops[name2], type);
 
     if (!nodes.empty()) {
 
@@ -143,30 +143,55 @@ void STCP::showPath(const string &name1, const string &name2, int type) {
                 cout << "Ira passar por " << nodes.size() << " paragens antes de chegar ao seu destino. Itinerario: " << endl;
                 break;
             case 2:
-                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.back().customWeight.meters << " metros antes de chegar ao seu destino. Itinerario: " << endl;
+                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.front().customWeight.meters << " metros antes de chegar ao seu destino. Itinerario: " << endl;
                 break;
             case 3:
-                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.back().customWeight.numberOfLines << " linhas antes de chegar ao seu destino. Itinerario: " << endl;
+                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.front().customWeight.numberOfLines << " linhas antes de chegar ao seu destino. Itinerario: " << endl;
                 break;
             case 4:
-                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.back().customWeight.numberOfZones << " zonas antes de chegar ao seu destino. Itinerario: " << endl;
+                cout << "Ira passar por " << nodes.size() << " paragens e percorrer " << nodes.front().customWeight.numberOfZones << " zonas antes de chegar ao seu destino. Itinerario: " << endl;
                 break;
         }
-        for (const Node &node : nodes) {
-            cout << node.name << endl;
+
+        string lastCode = nodes[nodes.size()-1].code;
+        string lastLine = nodes[nodes.size()-1].currentLine;
+        double lastDistance = 0;
+
+        /*
+        for (size_t i = nodes.size() - 1 ; i > 0 ; i--) {
+            cout << nodes[i].code << " --> " << nodes[i].currentLine << endl;
+        }
+        cout << nodes[0].code << " --> " << nodes[0].currentLine << endl;
+        */
+
+        cout << "De " << lastCode;
+        for (size_t i = nodes.size() - 1 ; i != 0 ; i--) {
+            if (nodes[i].currentLine == lastLine && nodes[i - 1].currentLine == lastLine) {
+                lastCode = nodes[i].code;
+                if (i-1 == 0) {
+                    cout << " para " << nodes[0].code << " pela linha " << nodes[0].currentLine << endl;
+                    return;
+                }
+            } else if (nodes[i].currentLine == lastLine && nodes[i - 1].currentLine != lastLine) {
+                lastLine = nodes[i - 1].currentLine;
+                lastCode = nodes[i - 1].code;
+                cout << " para " << lastCode << " pela linha " << lastLine << endl;
+                lastLine = nodes[i - 2].currentLine;
+                cout << "De " << lastCode;
+            } else continue;
         }
     }
 }
 
 void STCP::disableStop(const string &name) {
     if (stops.find(name) == stops.end()) {
-        cout << "Nome de paragem invalido" << endl;
+        cout << "Codigo de paragem invalido" << endl;
     } else graph.disableStop(stops[name]);
 }
 
 void STCP::disableLine(const string &line) {
     if (lines.find(line) == lines.end()) {
-        cout << "Nome de linha invalido" << endl;
+        cout << "Codigo de linha invalido" << endl;
     } else graph.disableLine(line);
 }
 
@@ -176,7 +201,7 @@ void STCP::disableArea(const Coordinate &coordinate, double distance) {
 
 void STCP::disableArea(const string &name, double distance) {
     if (stops.find(name) == stops.end()) {
-        cout << "Nome de paragem invalido" << endl;
+        cout << "Codigo de paragem invalido" << endl;
     } else graph.disableArea(stops[name], distance);
 }
 

@@ -151,13 +151,13 @@ void Menu::coordInputMenu() {
     cout << "Insira as coordenadas de onde quer partir" << endl;
     cout << "Coordenada Norte: ";
     cin >> departureNorth;
-    cout << "\nCoordenada Oeste: ";
+    cout << "Coordenada Oeste: ";
     cin >> departureWest;
 
     cout << "Insira as coordenadas do destino" << endl;
     cout << "Coordenada Norte: ";
     cin >> arrivalNorth;
-    cout << "\nCoordenada Oeste: ";
+    cout << "Coordenada Oeste: ";
     cin >> arrivalWest;
 
     Coordinate departureCoordinate = {departureNorth, departureWest};
@@ -173,7 +173,7 @@ void Menu::stopInputMenu() {
     string departureStop, arrivalStop;
     cout << "Insira o nome da paragem de onde quer partir: ";
     cin >> departureStop;
-    cout << "\nInsira o nome da paragem destino: ";
+    cout << "Insira o nome da paragem destino: ";
     cin >> arrivalStop;
     stcp.createFootItineraries(footInputMenu());
     stcp.showPath(departureStop,arrivalStop,optionType);
@@ -185,10 +185,10 @@ void Menu::stopInputMenu() {
 void Menu::disableBusStopMenu() {
     bool insert = false; string name;
     while (!insert) {
-        cout << "Insira o nome da paragem" << endl;
+        cout << "Insira o nome da paragem:" << endl;
         cin >> name;
         stcp.disableStop(name);
-        cout << "Deseja desativar outra paragem? (S - Sim, N - Nao)" << endl;
+        cout << "Deseja desativar outra paragem? (S - Sim, N - Nao):" << endl;
         cin >> name;
         if (name == "N" || name == "n") insert = true;
     }
@@ -197,10 +197,10 @@ void Menu::disableBusStopMenu() {
 void Menu::disableBusLineMenu() {
     bool insert = false; string name;
     while (!insert) {
-        cout << "Insira o nome da linha" << endl;
+        cout << "Insira o nome da linha:" << endl;
         cin >> name;
         stcp.disableLine(name);
-        cout << "Deseja desativar outra linha? (S - Sim, N - Nao)" << endl;
+        cout << "Deseja desativar outra linha? (S - Sim, N - Nao):" << endl;
         cin >> name;
         if (name == "N" || name == "n") insert = true;
     }
@@ -209,10 +209,10 @@ void Menu::disableBusLineMenu() {
 void Menu::disableZoneMenu() {
     bool insert = false; string name;
     while (!insert) {
-        cout << "Insira o nome da zona" << endl;
+        cout << "Insira o nome da zona:" << endl;
         cin >> name;
         stcp.disableZone(name);
-        cout << "Deseja desativar outra zona? (S - Sim, N - Nao)" << endl;
+        cout << "Deseja desativar outra zona? (S - Sim, N - Nao):" << endl;
         cin >> name;
         if (name == "N" || name == "n") insert = true;
     }
@@ -222,24 +222,23 @@ void Menu::disableAreaMenu() {
     double distance; string name,stop;
     bool pass = false;
     do {
-        cout << "Quer desativar a partir de uma paragem ou coordenada? (P - Paragem, C - Coordenada)"
-             << endl;
+        cout << "Quer desativar a partir de uma paragem ou coordenada? (P - Paragem, C - Coordenada):" << endl;
         cin >> name;
         if (name == "P" || name == "p") {
-            cout << "Insira o nome da paragem" << endl;
+            cout << "Insira o nome da paragem: " << endl;
             cin >> stop;
-            cout << "Qual a quantidade de metros limite para desativar?" << endl;
+            cout << "Qual a quantidade de metros limite para desativar? " << endl;
             cin >> distance;
             stcp.disableArea(stop, distance);
             pass = true;
         } else if (name == "C" || name == "c") {
             double latitude, longitude;
-            cout << "Insira as coordenadas de onde quer partir" << endl;
+            cout << "Insira as coordenadas de onde quer partir:" << endl;
             cout << "Coordenada Norte: ";
             cin >> latitude;
-            cout << "\nCoordenada Oeste: ";
+            cout << "Coordenada Oeste: ";
             cin >> longitude;
-            cout << "Qual a quantidade de metros limite para desativar?" << endl;
+            cout << "Qual a quantidade de metros limite para desativar? " << endl;
             cin >> distance;
             Coordinate coordinate = {latitude, longitude};
             stcp.disableArea(coordinate, distance);

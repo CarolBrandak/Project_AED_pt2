@@ -256,9 +256,9 @@ class Graph {
          * @param origin - index of origin stop
          * @param destination - index of destination stop
          * @param type - an integer value containing the searching type, based on users input
-         * @return a list of Node structs that containing all path between origin and destination nodes
+         * @return a vector of Node structs that containing all path between origin and destination nodes
          */
-        list<Node> dijkstraPath(int origin, int destination, int type);
+        vector<Node> makePath(int origin, int destination, int type);
 
         /**
          * Function that disable a Stop
