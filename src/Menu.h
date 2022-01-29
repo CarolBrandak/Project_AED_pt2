@@ -68,13 +68,6 @@ class Menu {
          */
         void disableAreaMenu();
 
-    public:
-
-        /**
-         * Constructor for the menu class
-         * */
-        Menu();
-
         /**
          * Main menu that allows the user to choose between the find route menu or leave the program
          * */
@@ -110,6 +103,12 @@ class Menu {
          * @return a double value containing the number of meters chosen
          */
         double footInputMenu();
+
+    public:
+        /**
+         * Constructor for the menu class
+         * */
+        Menu();
 };
 
 #endif // PROJECT_AED_PT2_MENU_H
