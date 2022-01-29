@@ -197,7 +197,7 @@ void Menu::disableBusStopMenu() {
 void Menu::disableBusLineMenu() {
     bool insert = false; string name;
     while (!insert) {
-        cout << "Insira o código da linha:" << endl;
+        cout << "Insira o cï¿½digo da linha:" << endl;
         cin >> name;
         stcp.disableLine(name);
         cout << "Deseja desativar outra linha? (S - Sim, N - Nao):" << endl;
@@ -244,6 +244,8 @@ void Menu::disableAreaMenu() {
             stcp.disableArea(coordinate, distance);
             pass = true;
         }
+        cin.clear();
+        cin.ignore(1000, '\n');
     } while (!pass);
     getMenu();
 }
