@@ -82,7 +82,7 @@ $(function() {
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define COORD_TYPE_MENU 2</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define COORDINATE_MENU 3</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define STOP_MENU 4</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define DISABLE_MENU 5</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define SEARCH_DEFINITIONS_MENU 5</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_menu.html">   21</a></span><span class="keyword">class </span><a class="code hl_class" href="class_menu.html">Menu</a> {</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
@@ -98,36 +98,47 @@ $(function() {
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#a7332b06cbcb8399b2af6e0184fc5ef77">getMenu</a>();</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_function" href="class_menu.html#ad466dd83355124a6ed958430450bfe94">Menu</a>();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#aef9edee86d2ea460606361c92e061583">mainMenu</a>();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#a53564d64b4d26c133f2f0bd7a0f120a8">routeTypeMenu</a>();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#a35b12df5afb10c987d3d26c6c35ebcae">coordTypeMenu</a>();</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#af35ce91c9511411a91b6cc2317d376c3">coordInputMenu</a>();</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#a38d8f36aba4ef8f1609600da66ee5dda">searchDefinitionsMenu</a>();</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#aebe15fb38851ccb1139636b7cb407b9c">stopInputMenu</a>();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keywordtype">double</span> <a class="code hl_function" href="class_menu.html#ac04443663cb3b06d6c885c437ef7aa0f">footInputMenu</a>();</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>};</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif </span><span class="comment">// PROJECT_AED_PT2_MENU_H</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#ac3e6e3bf7b4523c16bdb3a59087e20e5">disableZoneMenu</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#affee87ba316becc503440782c7347708">disableBusStopMenu</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#accec7fe6f69ecd6112d6854051734800">disableBusLineMenu</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#a4faf7f20f178ab1975b25805d71e69f8">disableAreaMenu</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#aef9edee86d2ea460606361c92e061583">mainMenu</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#a53564d64b4d26c133f2f0bd7a0f120a8">routeTypeMenu</a>();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#a35b12df5afb10c987d3d26c6c35ebcae">coordTypeMenu</a>();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#af35ce91c9511411a91b6cc2317d376c3">coordInputMenu</a>();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#a38d8f36aba4ef8f1609600da66ee5dda">searchDefinitionsMenu</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="class_menu.html#aebe15fb38851ccb1139636b7cb407b9c">stopInputMenu</a>();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordtype">double</span> <a class="code hl_function" href="class_menu.html#ac04443663cb3b06d6c885c437ef7aa0f">footInputMenu</a>();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <a class="code hl_function" href="class_menu.html#ad466dd83355124a6ed958430450bfe94">Menu</a>();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>};</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#endif </span><span class="comment">// PROJECT_AED_PT2_MENU_H</span></div>
 <div class="ttc" id="aclass_menu_html"><div class="ttname"><a href="class_menu.html">Menu</a></div><div class="ttdef"><b>Definition:</b> Menu.h:21</div></div>
-<div class="ttc" id="aclass_menu_html_a35b12df5afb10c987d3d26c6c35ebcae"><div class="ttname"><a href="class_menu.html#a35b12df5afb10c987d3d26c6c35ebcae">Menu::coordTypeMenu</a></div><div class="ttdeci">void coordTypeMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:154</div></div>
-<div class="ttc" id="aclass_menu_html_a38d8f36aba4ef8f1609600da66ee5dda"><div class="ttname"><a href="class_menu.html#a38d8f36aba4ef8f1609600da66ee5dda">Menu::searchDefinitionsMenu</a></div><div class="ttdeci">void searchDefinitionsMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:85</div></div>
-<div class="ttc" id="aclass_menu_html_a53564d64b4d26c133f2f0bd7a0f120a8"><div class="ttname"><a href="class_menu.html#a53564d64b4d26c133f2f0bd7a0f120a8">Menu::routeTypeMenu</a></div><div class="ttdeci">void routeTypeMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:56</div></div>
+<div class="ttc" id="aclass_menu_html_a35b12df5afb10c987d3d26c6c35ebcae"><div class="ttname"><a href="class_menu.html#a35b12df5afb10c987d3d26c6c35ebcae">Menu::coordTypeMenu</a></div><div class="ttdeci">void coordTypeMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:118</div></div>
+<div class="ttc" id="aclass_menu_html_a38d8f36aba4ef8f1609600da66ee5dda"><div class="ttname"><a href="class_menu.html#a38d8f36aba4ef8f1609600da66ee5dda">Menu::searchDefinitionsMenu</a></div><div class="ttdeci">void searchDefinitionsMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:88</div></div>
+<div class="ttc" id="aclass_menu_html_a4faf7f20f178ab1975b25805d71e69f8"><div class="ttname"><a href="class_menu.html#a4faf7f20f178ab1975b25805d71e69f8">Menu::disableAreaMenu</a></div><div class="ttdeci">void disableAreaMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:221</div></div>
+<div class="ttc" id="aclass_menu_html_a53564d64b4d26c133f2f0bd7a0f120a8"><div class="ttname"><a href="class_menu.html#a53564d64b4d26c133f2f0bd7a0f120a8">Menu::routeTypeMenu</a></div><div class="ttdeci">void routeTypeMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:59</div></div>
 <div class="ttc" id="aclass_menu_html_a7332b06cbcb8399b2af6e0184fc5ef77"><div class="ttname"><a href="class_menu.html#a7332b06cbcb8399b2af6e0184fc5ef77">Menu::getMenu</a></div><div class="ttdeci">void getMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:14</div></div>
-<div class="ttc" id="aclass_menu_html_ac04443663cb3b06d6c885c437ef7aa0f"><div class="ttname"><a href="class_menu.html#ac04443663cb3b06d6c885c437ef7aa0f">Menu::footInputMenu</a></div><div class="ttdeci">double footInputMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:221</div></div>
+<div class="ttc" id="aclass_menu_html_ac04443663cb3b06d6c885c437ef7aa0f"><div class="ttname"><a href="class_menu.html#ac04443663cb3b06d6c885c437ef7aa0f">Menu::footInputMenu</a></div><div class="ttdeci">double footInputMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:253</div></div>
+<div class="ttc" id="aclass_menu_html_ac3e6e3bf7b4523c16bdb3a59087e20e5"><div class="ttname"><a href="class_menu.html#ac3e6e3bf7b4523c16bdb3a59087e20e5">Menu::disableZoneMenu</a></div><div class="ttdeci">void disableZoneMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:209</div></div>
+<div class="ttc" id="aclass_menu_html_accec7fe6f69ecd6112d6854051734800"><div class="ttname"><a href="class_menu.html#accec7fe6f69ecd6112d6854051734800">Menu::disableBusLineMenu</a></div><div class="ttdeci">void disableBusLineMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:197</div></div>
 <div class="ttc" id="aclass_menu_html_ad466dd83355124a6ed958430450bfe94"><div class="ttname"><a href="class_menu.html#ad466dd83355124a6ed958430450bfe94">Menu::Menu</a></div><div class="ttdeci">Menu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:8</div></div>
-<div class="ttc" id="aclass_menu_html_aebe15fb38851ccb1139636b7cb407b9c"><div class="ttname"><a href="class_menu.html#aebe15fb38851ccb1139636b7cb407b9c">Menu::stopInputMenu</a></div><div class="ttdeci">void stopInputMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:208</div></div>
+<div class="ttc" id="aclass_menu_html_aebe15fb38851ccb1139636b7cb407b9c"><div class="ttname"><a href="class_menu.html#aebe15fb38851ccb1139636b7cb407b9c">Menu::stopInputMenu</a></div><div class="ttdeci">void stopInputMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:172</div></div>
 <div class="ttc" id="aclass_menu_html_aef9edee86d2ea460606361c92e061583"><div class="ttname"><a href="class_menu.html#aef9edee86d2ea460606361c92e061583">Menu::mainMenu</a></div><div class="ttdeci">void mainMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:28</div></div>
-<div class="ttc" id="aclass_menu_html_af35ce91c9511411a91b6cc2317d376c3"><div class="ttname"><a href="class_menu.html#af35ce91c9511411a91b6cc2317d376c3">Menu::coordInputMenu</a></div><div class="ttdeci">void coordInputMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:183</div></div>
+<div class="ttc" id="aclass_menu_html_af35ce91c9511411a91b6cc2317d376c3"><div class="ttname"><a href="class_menu.html#af35ce91c9511411a91b6cc2317d376c3">Menu::coordInputMenu</a></div><div class="ttdeci">void coordInputMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:147</div></div>
+<div class="ttc" id="aclass_menu_html_affee87ba316becc503440782c7347708"><div class="ttname"><a href="class_menu.html#affee87ba316becc503440782c7347708">Menu::disableBusStopMenu</a></div><div class="ttdeci">void disableBusStopMenu()</div><div class="ttdef"><b>Definition:</b> Menu.cpp:185</div></div>
 <div class="ttc" id="aclass_s_t_c_p_html"><div class="ttname"><a href="class_s_t_c_p.html">STCP</a></div><div class="ttdef"><b>Definition:</b> STCP.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

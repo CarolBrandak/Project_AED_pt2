@@ -162,7 +162,7 @@ void STCP::disableStop(const string &name) {
 void STCP::disableLine(const string &line) {
     if (lines.find(line) == lines.end()) {
         cout << "Codigo de linha invalido" << endl;
-    } else graph.disableLine(line);
+    } else graph.disableLine(lines[line]);
 }
 
 void STCP::disableArea(const Coordinate &coordinate, double distance) {

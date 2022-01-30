@@ -80,18 +80,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4541383180e44e0ce4b8cc0919ad5c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61d21904a7be51aa5ac28f3398202e8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#a61d21904a7be51aa5ac28f3398202e8b">~STCP</a> ()</td></tr>
 <tr class="separator:a61d21904a7be51aa5ac28f3398202e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b23fa05e7715879938c58f41fe237ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#a4b23fa05e7715879938c58f41fe237ce">getStop</a> (const string &amp;code)</td></tr>
-<tr class="separator:a4b23fa05e7715879938c58f41fe237ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9945170c9dfc163cfbe02bc0a94e36a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#ac9945170c9dfc163cfbe02bc0a94e36a">createFootItineraries</a> (double distance)</td></tr>
 <tr class="separator:ac9945170c9dfc163cfbe02bc0a94e36a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92f5f638742eeb0b6cdf56d8e6fd817a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#a92f5f638742eeb0b6cdf56d8e6fd817a">showPath</a> (const string &amp;name1, const string &amp;name2, int type)</td></tr>
 <tr class="separator:a92f5f638742eeb0b6cdf56d8e6fd817a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e1096e96905ba0aafab0341ef279d86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#a8e1096e96905ba0aafab0341ef279d86">showPath</a> (const <a class="el" href="struct_coordinate.html">Coordinate</a> &amp;c1, const <a class="el" href="struct_coordinate.html">Coordinate</a> &amp;c2, int type)</td></tr>
 <tr class="separator:a8e1096e96905ba0aafab0341ef279d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93c4486147e8a3669392283547252c15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#a93c4486147e8a3669392283547252c15">showPath</a> (const string &amp;name1, const <a class="el" href="struct_coordinate.html">Coordinate</a> &amp;c2, int type)</td></tr>
-<tr class="separator:a93c4486147e8a3669392283547252c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a833a52eee6c9882fce8a0b8868b0e918"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#a833a52eee6c9882fce8a0b8868b0e918">showPath</a> (const <a class="el" href="struct_coordinate.html">Coordinate</a> &amp;c1, const string &amp;name2, int type)</td></tr>
-<tr class="separator:a833a52eee6c9882fce8a0b8868b0e918"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d27b60fed163588624e8b9794bcd20a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#a9d27b60fed163588624e8b9794bcd20a">disableStop</a> (const string &amp;name)</td></tr>
 <tr class="separator:a9d27b60fed163588624e8b9794bcd20a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45d30a60d6ba67675b7486b0fd499411"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_s_t_c_p.html#a45d30a60d6ba67675b7486b0fd499411">disableLine</a> (const string &amp;line)</td></tr>
@@ -479,33 +473,8 @@ map&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 
 </div>
 </div>
-<a id="a4b23fa05e7715879938c58f41fe237ce" name="a4b23fa05e7715879938c58f41fe237ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b23fa05e7715879938c58f41fe237ce">&#9670;&nbsp;</a></span>getStop()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_node.html">Node</a> STCP::getStop </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>code</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Function that returns a Stop, based on his code Time Complexity: O(1) </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">code</td><td>- a string containing the code of certain Stop </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="struct_node.html">Node</a> struct representing the Stop </dd></dl>
-
-</div>
-</div>
 <a id="a8e1096e96905ba0aafab0341ef279d86" name="a8e1096e96905ba0aafab0341ef279d86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e1096e96905ba0aafab0341ef279d86">&#9670;&nbsp;</a></span>showPath() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e1096e96905ba0aafab0341ef279d86">&#9670;&nbsp;</a></span>showPath() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -538,90 +507,6 @@ map&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 <p >@Overload Function that prints all path based on users input Time Complexity: O(V), which V is the number of Nodes </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c1</td><td>- a <a class="el" href="struct_coordinate.html">Coordinate</a> struct containing the coordinate of certain origin stop </td></tr>
-    <tr><td class="paramname">c2</td><td>- a <a class="el" href="struct_coordinate.html">Coordinate</a> struct containing the coordinate of certain destination stop </td></tr>
-    <tr><td class="paramname">type</td><td>- an integer value representing the user choice </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a833a52eee6c9882fce8a0b8868b0e918" name="a833a52eee6c9882fce8a0b8868b0e918"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a833a52eee6c9882fce8a0b8868b0e918">&#9670;&nbsp;</a></span>showPath() <span class="overload">[2/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void STCP::showPath </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_coordinate.html">Coordinate</a> &amp;&#160;</td>
-          <td class="paramname"><em>c1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>name2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >@Overload Function that prints all path based on users input Time Complexity: O(V), which V is the number of Nodes </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">c1</td><td>- a <a class="el" href="struct_coordinate.html">Coordinate</a> struct containing the coordinate of certain origin stop </td></tr>
-    <tr><td class="paramname">name2</td><td>- a string containing the name of certain destination stop </td></tr>
-    <tr><td class="paramname">type</td><td>- an integer value representing the user choice </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a93c4486147e8a3669392283547252c15" name="a93c4486147e8a3669392283547252c15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93c4486147e8a3669392283547252c15">&#9670;&nbsp;</a></span>showPath() <span class="overload">[3/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void STCP::showPath </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>name1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="struct_coordinate.html">Coordinate</a> &amp;&#160;</td>
-          <td class="paramname"><em>c2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >@Overload Function that prints all path based on users input Time Complexity: O(V), which V is the number of Nodes </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name1</td><td>- a string containing the name of certain origin stop </td></tr>
     <tr><td class="paramname">c2</td><td>- a <a class="el" href="struct_coordinate.html">Coordinate</a> struct containing the coordinate of certain destination stop </td></tr>
     <tr><td class="paramname">type</td><td>- an integer value representing the user choice </td></tr>
   </table>
@@ -631,7 +516,7 @@ map&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 </div>
 </div>
 <a id="a92f5f638742eeb0b6cdf56d8e6fd817a" name="a92f5f638742eeb0b6cdf56d8e6fd817a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92f5f638742eeb0b6cdf56d8e6fd817a">&#9670;&nbsp;</a></span>showPath() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a92f5f638742eeb0b6cdf56d8e6fd817a">&#9670;&nbsp;</a></span>showPath() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
