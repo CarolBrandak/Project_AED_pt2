@@ -93,6 +93,10 @@ void Graph::dijkstraMeters(int origin) {
         nodes[i].parent = INF;
         counter.insert(make_pair(INF, i));
     }
+    if (!nodes[origin].available) {
+        cout << "A origem nao esta disponivel" << endl;
+        return;
+    }
 
     nodes[origin].customWeight.meters = 0;
     nodes[origin].customWeight.numberOfZones = 1;
@@ -136,6 +140,11 @@ void Graph::dijkstraLines(int origin) {
         counter.insert(make_pair(make_pair(INF, INF), i));
     }
 
+    if (!nodes[origin].available) {
+        cout << "A origem nao esta disponivel" << endl;
+        return;
+    }
+
     nodes[origin].customWeight.numberOfLines = 0;
     nodes[origin].customWeight.numberOfZones = 1;
     nodes[origin].customWeight.meters = 0;
@@ -157,7 +166,7 @@ void Graph::dijkstraLines(int origin) {
             int v = edge.dest;
             double w = edge.weight;
             currentLine = edge.name;
-            if(!nodes[v].visited && nodes[u].customWeight.numberOfLines < nodes[v].customWeight.numberOfLines) {
+            if(!nodes[v].visited && nodes[v].available && nodes[u].customWeight.numberOfLines < nodes[v].customWeight.numberOfLines) {
 
                 counter.erase({{nodes[v].customWeight.numberOfLines, nodes[v].customWeight.meters}, v});
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
@@ -193,6 +202,11 @@ void Graph::dijkstraZones(int origin) {
         counter.insert(make_pair(make_pair(INF, INF), i));
     }
 
+    if (!nodes[origin].available) {
+        cout << "A origem nao esta disponivel" << endl;
+        return;
+    }
+
     nodes[origin].customWeight.numberOfZones = 1;
     nodes[origin].customWeight.meters = 0;
     nodes[origin].parent = origin;
@@ -208,7 +222,7 @@ void Graph::dijkstraZones(int origin) {
         for (const Edge &edge : nodes[u].adjacent) {
             int v = edge.dest;
             double w = edge.weight;
-            if(!nodes[v].visited && nodes[u].customWeight.numberOfZones < nodes[v].customWeight.numberOfZones) {
+            if(!nodes[v].visited && nodes[v].available && nodes[u].customWeight.numberOfZones < nodes[v].customWeight.numberOfZones) {
                 counter.erase({{nodes[v].customWeight.numberOfZones, nodes[v].customWeight.meters}, v});
                 nodes[v].customWeight.meters = nodes[u].customWeight.meters + w;
                 nodes[v].parent = u;

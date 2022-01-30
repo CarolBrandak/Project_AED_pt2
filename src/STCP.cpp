@@ -143,8 +143,8 @@ void STCP::showPath(const string &name1, const string &name2, int type) {
 
         double lastDistance = 0;
         cout << "Paragem " << nodes[nodes.size()-1].code << " (" << nodes[nodes.size()-1].name << "), zona " << nodes[nodes.size()-1].zone << endl;
-        for (size_t i = nodes.size() - 2 ; i != 0 ; i--) {
-            string line = nodes[i].currentLine == "Foot" ? " metros a pé" : " metros na linha " + nodes[i].currentLine;
+        for (size_t i = nodes.size() - 2 ; i != -1 ; i--) {
+            string line = nodes[i].currentLine == "Foot" ? " metros a pe" : " metros na linha " + nodes[i].currentLine;
             cout << "Paragem " << nodes[i].code << " (" << nodes[i].name << "), zona " << nodes[i].zone << " percorrendo " <<
                 nodes[i].customWeight.meters - lastDistance << line << endl;
             lastDistance = nodes[i].customWeight.meters;
@@ -162,7 +162,7 @@ void STCP::disableStop(const string &name) {
 void STCP::disableLine(const string &line) {
     if (lines.find(line) == lines.end()) {
         cout << "Codigo de linha invalido" << endl;
-    } else graph.disableLine(line);
+    } else graph.disableLine(lines[line]);
 }
 
 void STCP::disableArea(const Coordinate &coordinate, double distance) {
